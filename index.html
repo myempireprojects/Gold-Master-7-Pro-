@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="XAU Compounder">
-<title>XAU Compounder Pro · Live</title>
+<title>XAU Ultra-HFT Scalper · Live</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inconsolata:wght@300;400;500;600;700&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
@@ -335,7 +335,7 @@ tbody td{padding:9px 11px;font-family:var(--f-mono);font-size:11px;vertical-alig
     </div>
     <div>
       <div class="brand-text">XAU Compounder</div>
-      <div class="brand-sub">Deriv Live · HFT Scalper · Pure M1 · Live Deriv</div>
+      <div class="brand-sub">Deriv Live · Ultra-HFT · Tick Scalper · 10+ trades/2min</div>
     </div>
   </div>
   <div class="hdr-spacer"></div>
@@ -405,19 +405,19 @@ tbody td{padding:9px 11px;font-family:var(--f-mono);font-size:11px;vertical-alig
     </div>
   </div>
 
-  <div class="section-hdr">Gate Status · M1 Structure</div>
+  <div class="section-hdr">Gate Status · Tick Momentum</div>
   <div class="gate-row" id="d-gates-m5">
-    <div class="gate-block" data-g="0"><div class="gate-icon">—</div><div class="gate-lbl">BOS/CHoCH</div></div>
-    <div class="gate-block" data-g="1"><div class="gate-icon">—</div><div class="gate-lbl">FVG</div></div>
-    <div class="gate-block" data-g="2"><div class="gate-icon">—</div><div class="gate-lbl">OB</div></div>
-    <div class="gate-block" data-g="3"><div class="gate-icon">—</div><div class="gate-lbl">Disp</div></div>
+    <div class="gate-block" data-g="0"><div class="gate-icon">—</div><div class="gate-lbl">Pattern</div></div>
+    <div class="gate-block" data-g="1"><div class="gate-icon">—</div><div class="gate-lbl">Body%</div></div>
+    <div class="gate-block" data-g="2"><div class="gate-icon">—</div><div class="gate-lbl">RngBreak</div></div>
+    <div class="gate-block" data-g="3"><div class="gate-icon">—</div><div class="gate-lbl">Velocity</div></div>
     <div class="gate-block" data-g="4"><div class="gate-icon">—</div><div class="gate-lbl">Session</div></div>
   </div>
 
   <div class="panel" style="margin-bottom:10px">
-    <div class="panel-title"><span class="pt-icon">◈</span> Gate Confluence Score · M1</div>
-    <div class="tf-score-row"><div class="tf-tag" style="width:50px">BOS</div><div class="score-track"><div class="score-fill" id="sf-m15" style="width:0%"></div></div><div class="score-num" id="sn-m15">0/5</div></div>
-    <div class="tf-score-row"><div class="tf-tag" style="width:50px">OB/FVG</div><div class="score-track"><div class="score-fill" id="sf-m5" style="width:0%"></div></div><div class="score-num" id="sn-m5">0/5</div></div>
+    <div class="panel-title"><span class="pt-icon">◈</span> Gate Confluence Score · Tick</div>
+    <div class="tf-score-row"><div class="tf-tag" style="width:50px">Vel</div><div class="score-track"><div class="score-fill" id="sf-m15" style="width:0%"></div></div><div class="score-num" id="sn-m15">0/5</div></div>
+    <div class="tf-score-row"><div class="tf-tag" style="width:50px">Pin</div><div class="score-track"><div class="score-fill" id="sf-m5" style="width:0%"></div></div><div class="score-num" id="sn-m5">0/5</div></div>
     <div class="tf-score-row" style="margin-bottom:0"><div class="tf-tag" style="width:50px">Full</div><div class="score-track"><div class="score-fill" id="sf-m1" style="width:0%"></div></div><div class="score-num" id="sn-m1">0/5</div></div>
   </div>
 
@@ -436,25 +436,25 @@ tbody td{padding:9px 11px;font-family:var(--f-mono);font-size:11px;vertical-alig
     <div style="font-family:var(--f-mono);font-size:10px;color:var(--ink3)">Last evaluated: <span id="sig-eval-time">—</span></div>
   </div>
   <div class="g g-2" style="margin-bottom:10px">
-    <div class="panel"><div class="panel-title">Confluence Score</div><div class="metric lg au" id="sig-score-val">0</div><div class="metric-sub">LQ Sweep · OB Break · Momentum</div></div>
+    <div class="panel"><div class="panel-title">Confluence Score</div><div class="metric lg au" id="sig-score-val">0</div><div class="metric-sub">Tick Surge · Momentum · Push</div></div>
     <div class="panel"><div class="panel-title">Entry Quality</div><div class="metric" id="sig-quality">—</div><div class="metric-sub" id="sig-quality-sub">All gates required</div></div>
   </div>
 
-  <div class="section-hdr">Gate Detail · M1 Structure</div>
+  <div class="section-hdr">Gate Detail · Tick Signal</div>
   <div class="gate-row" id="s-gates-m5">
-    <div class="gate-block" data-g="0"><div class="gate-icon">—</div><div class="gate-lbl">Pattern Det.</div></div>
-    <div class="gate-block" data-g="1"><div class="gate-icon">—</div><div class="gate-lbl">LQ Sweep</div></div>
-    <div class="gate-block" data-g="2"><div class="gate-icon">—</div><div class="gate-lbl">OB Break</div></div>
-    <div class="gate-block" data-g="3"><div class="gate-icon">—</div><div class="gate-lbl">Disp Str.</div></div>
+    <div class="gate-block" data-g="0"><div class="gate-icon">—</div><div class="gate-lbl">Pattern</div></div>
+    <div class="gate-block" data-g="1"><div class="gate-icon">—</div><div class="gate-lbl">Body %</div></div>
+    <div class="gate-block" data-g="2"><div class="gate-icon">—</div><div class="gate-lbl">Rng Brk</div></div>
+    <div class="gate-block" data-g="3"><div class="gate-icon">—</div><div class="gate-lbl">Velocity</div></div>
     <div class="gate-block" data-g="4"><div class="gate-icon">—</div><div class="gate-lbl">Session</div></div>
   </div>
 
-  <div class="section-hdr">Gate Detail · M1 Execution</div>
+  <div class="section-hdr">Gate Detail · Streak Quality</div>
   <div class="gate-row" id="s-gates-m1">
-    <div class="gate-block" data-g="0"><div class="gate-icon">—</div><div class="gate-lbl">BOS/CHoCH</div></div>
-    <div class="gate-block" data-g="1"><div class="gate-icon">—</div><div class="gate-lbl">FVG</div></div>
-    <div class="gate-block" data-g="2"><div class="gate-icon">—</div><div class="gate-lbl">Ord Block</div></div>
-    <div class="gate-block" data-g="3"><div class="gate-icon">—</div><div class="gate-lbl">Disp Candle</div></div>
+    <div class="gate-block" data-g="0"><div class="gate-icon">—</div><div class="gate-lbl">Align</div></div>
+    <div class="gate-block" data-g="1"><div class="gate-icon">—</div><div class="gate-lbl">Body Ratio</div></div>
+    <div class="gate-block" data-g="2"><div class="gate-icon">—</div><div class="gate-lbl">Breakout</div></div>
+    <div class="gate-block" data-g="3"><div class="gate-icon">—</div><div class="gate-lbl">Momentum</div></div>
     <div class="gate-block" data-g="4"><div class="gate-icon">—</div><div class="gate-lbl">Session</div></div>
   </div>
 
@@ -554,11 +554,11 @@ tbody td{padding:9px 11px;font-family:var(--f-mono);font-size:11px;vertical-alig
     <div class="settings-block-hdr">Live Feed — Deriv WebSocket</div>
     <div class="deriv-notice">
       <strong>✅ DERIV FEED ACTIVE</strong>
-      Live XAU/USD bid/ask ticks stream free via Deriv WebSocket (frxXAUUSD). Bot trades <strong>pure M1 structure only</strong> — BMS, OB, FVG detected on 1-minute candles. No API key required.
+      Live XAU/USD bid/ask ticks stream free via Deriv WebSocket (frxXAUUSD). Bot trades <strong>pure M1 price action only</strong> — Velocity Break, Reversal Pin &amp; Momentum Surge detected on 1-minute candles. No API key required.
     </div>
     <div class="stat-row"><span class="sr-label">Symbol</span><span class="sr-value">frxXAUUSD</span></div>
     <div class="stat-row"><span class="sr-label">App ID</span><span class="sr-value">1089 (public demo)</span></div>
-    <div class="stat-row" style="margin-bottom:8px"><span class="sr-label">Candles</span><span class="sr-value">M1 × 500, M5 × 200, M15 × 100</span></div>
+    <div class="stat-row" style="margin-bottom:8px"><span class="sr-label">Candles</span><span class="sr-value">M1 × 500 (tick ring: 20)</span></div>
     <button class="action-btn" style="margin-top:4px;background:linear-gradient(135deg,#00664d,#00e676);color:#000" onclick="DerivFeed.connect()">⚡ Reconnect Deriv</button>
   </div>
 
@@ -570,18 +570,18 @@ tbody td{padding:9px 11px;font-family:var(--f-mono);font-size:11px;vertical-alig
   <div class="settings-block">
     <div class="settings-block-hdr">HFT Risk &amp; Speed</div>
     <div class="g g-2">
-      <div class="form-field"><label>Risk Per Trade (%)</label><input class="form-input" id="s-risk" type="number" value="0.5" step="0.1" min="0.01" max="10"></div>
+      <div class="form-field"><label>Risk Per Trade (%)</label><input class="form-input" id="s-risk" type="number" value="0.3" step="0.05" min="0.01" max="5"></div>
       <div class="form-field"><label>Max Concurrent Trades</label><input class="form-input" id="s-max-trades" type="number" value="5" step="1" min="1" max="20"></div>
     </div>
   </div>
 
   <div class="settings-block">
     <div class="settings-block-hdr">HFT Exit Rules</div>
-    <div class="notice-box" style="margin-bottom:10px"><span class="nb-icon">⚡</span><span>HFT mode: trades exit at TP, SL, or automatically after the time limit. No trailing or partial fills — pure hard exits for maximum speed.</span></div>
+    <div class="notice-box" style="margin-bottom:10px"><span class="nb-icon">⚡</span><span>Ultra-HFT mode: TP = fixed 0.08pt (~$8/lot). SL = 0.25pt. Max hold 8s. Cooldown 3s. Targets 10+ round-trips per 2 minutes — exits automatically on TP/SL/time.</span></div>
     <div class="g g-2">
-      <div class="form-field"><label>TP Target (×R)</label><input class="form-input" id="s-tp" type="number" value="1.5" step="0.25" min="0.5" max="5"></div>
-      <div class="form-field"><label>Max Trade Duration (min)</label><input class="form-input" id="s-max-dur" type="number" value="3" step="1" min="1" max="30"></div>
-      <div class="form-field"><label>Cooldown Between Trades (s)</label><input class="form-input" id="s-cooldown" type="number" value="12" step="1" min="1" max="300"></div>
+      <div class="form-field"><label>TP Distance (pt)</label><input class="form-input" id="s-tp" type="number" value="0.08" step="0.01" min="0.03" max="0.50"></div>
+      <div class="form-field"><label>Max Duration (sec)</label><input class="form-input" id="s-max-dur" type="number" value="8" step="1" min="2" max="30"></div>
+      <div class="form-field"><label>Cooldown Between Trades (s)</label><input class="form-input" id="s-cooldown" type="number" value="3" step="1" min="1" max="30"></div>
       <div class="form-field"><label>Min Displacement Ratio (%)</label><input class="form-input" id="s-min-disp" type="number" value="52" step="1" min="30" max="90"></div>
     </div>
   </div>
@@ -590,15 +590,15 @@ tbody td{padding:9px 11px;font-family:var(--f-mono);font-size:11px;vertical-alig
     <div class="settings-block-hdr">Pattern Filters</div>
     <div class="panel">
       <div class="toggle-line">
-        <div><div class="toggle-text">Liquidity Sweep + Rejection</div><div class="toggle-desc">Wick beyond swing level then close back — highest quality</div></div>
+        <div><div class="toggle-text">Velocity Break</div><div class="toggle-desc">Strong body closes beyond the 8-bar range — highest quality</div></div>
         <div class="toggle-switch on" id="tog-lq-sweep"></div>
       </div>
       <div class="toggle-line">
-        <div><div class="toggle-text">OB Break &amp; Close</div><div class="toggle-desc">Strong candle closes beyond 5-bar range boundary</div></div>
+        <div><div class="toggle-text">Reversal Pin</div><div class="toggle-desc">Wick rejection at micro-high or micro-low with body close</div></div>
         <div class="toggle-switch on" id="tog-ob-break"></div>
       </div>
       <div class="toggle-line">
-        <div><div class="toggle-text">Momentum Pulse</div><div class="toggle-desc">3+ aligned candles + dominant displacement body</div></div>
+        <div><div class="toggle-text">Momentum Surge</div><div class="toggle-desc">3+ aligned candles with accelerating body size</div></div>
         <div class="toggle-switch on" id="tog-momentum"></div>
       </div>
     </div>
@@ -694,45 +694,31 @@ function resizeCV() {
 // ── CANDLE BUILDER (from index.html) ──
 function _bucketEpoch(epoch, gran) { return Math.floor(epoch / gran) * gran; }
 
-function _processTick(midPrice, epochSec) {
-  const grans = [60, 300, 900];
-  for (const gran of grans) {
-    const bucket = _bucketEpoch(epochSec, gran);
-    if (!_forming[gran] || _forming[gran].epoch !== bucket) {
-      if (_forming[gran]) {
-        const bar = _forming[gran], arr = candles[gran];
-        const last = arr.length ? arr[arr.length-1] : null;
-        if (!last || bar.epoch > last.epoch) {
-          arr.push({ epoch:bar.epoch, open:bar.open, high:bar.high, low:bar.low, close:bar.close });
-          const cap = gran===60 ? 500 : gran===300 ? 200 : 100;
-          if (arr.length > cap) arr.shift();
-        }
-      }
-      _forming[gran] = { epoch:bucket, open:midPrice, high:midPrice, low:midPrice, close:midPrice };
-    } else {
-      const f = _forming[gran];
-      f.close = midPrice;
-      f.high  = Math.max(f.high, midPrice);
-      f.low   = Math.min(f.low,  midPrice);
-    }
-  }
-  for (const gran of grans) {
-    if (!_forming[gran]) continue;
-    const arr = candles[gran];
-    const last = arr.length ? arr[arr.length-1] : null;
-    if (last && last.epoch === _forming[gran].epoch) {
-      arr[arr.length-1] = { ..._forming[gran] };
-    } else if (!last || _forming[gran].epoch > last.epoch) {
-      arr.push({ ..._forming[gran] });
-      const cap = gran===60 ? 501 : gran===300 ? 201 : 101;
+function _processTick(price, epochSec) {
+  // Single clean pass — last element of each array IS the live bar
+  [60, 300, 900].forEach(gran => {
+    const bucket = Math.floor(epochSec / gran) * gran;
+    const arr    = candles[gran];
+    const last   = arr.length ? arr[arr.length - 1] : null;
+
+    if (!last || last.epoch < bucket) {
+      // New candle period — add live bar
+      arr.push({ epoch:bucket, open:price, high:price, low:price, close:price });
+      const cap = gran === 60 ? 500 : gran === 300 ? 200 : 100;
       if (arr.length > cap) arr.shift();
+    } else if (last.epoch === bucket) {
+      // Update current live bar in-place
+      last.close = price;
+      if (price > last.high) last.high = price;
+      if (price < last.low)  last.low  = price;
     }
-  }
+    // last.epoch > bucket shouldn't happen — ignore
+  });
 }
 
 // ══════════════════════════════════════════════════════
-//  STRATEGY OBJECT (from index.html)
-//  Used for: chart OB/FVG/BMS overlays + gate evaluation
+//  STRATEGY OBJECT — pure price-action helpers only
+//  No SMC concepts: no OB, FVG, BMS, LQ, MSS
 // ══════════════════════════════════════════════════════
 const strategy = {
   _btEpoch: null,
@@ -742,184 +728,6 @@ const strategy = {
     if (!arr || !arr.length) return [];
     if (!includeForming && this._btEpoch===null && arr.length>1) return arr.slice(0,-1);
     return arr;
-  },
-
-  isSwingHigh(arr,idx,left=3,right=3){
-    if(idx<left||idx>=arr.length-right) return false;
-    const pivot=arr[idx].high;
-    for(let i=1;i<=left;i++) if(arr[idx-i].high>=pivot) return false;
-    for(let i=1;i<=right;i++) if(arr[idx+i].high>=pivot) return false;
-    return true;
-  },
-  isSwingLow(arr,idx,left=3,right=3){
-    if(idx<left||idx>=arr.length-right) return false;
-    const pivot=arr[idx].low;
-    for(let i=1;i<=left;i++) if(arr[idx-i].low<=pivot) return false;
-    for(let i=1;i<=right;i++) if(arr[idx+i].low<=pivot) return false;
-    return true;
-  },
-  findSwingHigh(arr,lookback=30,left=3,right=3){
-    if(!arr||arr.length<left+right+1) return null;
-    const start=Math.max(left,arr.length-lookback-right);
-    for(let i=arr.length-1-right;i>=start;i--){
-      if(this.isSwingHigh(arr,i,left,right)) return {idx:i,price:arr[i].high,epoch:arr[i].epoch};
-    }
-    return null;
-  },
-  findSwingLow(arr,lookback=30,left=3,right=3){
-    if(!arr||arr.length<left+right+1) return null;
-    const start=Math.max(left,arr.length-lookback-right);
-    for(let i=arr.length-1-right;i>=start;i--){
-      if(this.isSwingLow(arr,i,left,right)) return {idx:i,price:arr[i].low,epoch:arr[i].epoch};
-    }
-    return null;
-  },
-
-  isMitigated(zone,tf,dir){
-    if(!zone||!zone.epoch) return true;
-    const arr=candles[tf]; if(!arr||arr.length<2) return false;
-    const formIdx=arr.findIndex(c=>c.epoch===zone.epoch);
-    if(formIdx===-1||formIdx>=arr.length-1) return false;
-    let touches=0,wasInZone=false;
-    for(let i=formIdx+1;i<arr.length;i++){
-      const c=arr[i];
-      if(dir==='bull'&&c.close<zone.low) return true;
-      if(dir==='bear'&&c.close>zone.high) return true;
-      const inZone=c.low<=zone.high&&c.high>=zone.low;
-      if(inZone&&!wasInZone){touches++;wasInZone=true;if(touches>=2) return true;}
-      else if(!inZone) wasInZone=false;
-    }
-    return false;
-  },
-
-  findOB(tf,dir){
-    const arr=this.getCompleted(tf); if(!arr||arr.length<10) return null;
-    const n=arr.length;
-    for(let bounceIdx=n-1;bounceIdx>=4;bounceIdx--){
-      const c=arr[bounceIdx];
-      const isBull=dir==='bull';
-      const isDisp=isBull?this.bullishDisplacement(c):this.bearishDisplacement(c);
-      if(!isDisp) continue;
-      let breaksStructure=false;
-      if(isBull){ const priorHigh=Math.max(...arr.slice(Math.max(0,bounceIdx-20),bounceIdx).map(x=>x.high)); breaksStructure=c.close>priorHigh; }
-      else{ const priorLow=Math.min(...arr.slice(Math.max(0,bounceIdx-20),bounceIdx).map(x=>x.low)); breaksStructure=c.close<priorLow; }
-      if(!breaksStructure) continue;
-      let obCandle=null;
-      for(let i=bounceIdx-1;i>=Math.max(0,bounceIdx-10);i--){
-        const isOpp=isBull?arr[i].close<arr[i].open:arr[i].close>arr[i].open;
-        if(isOpp){obCandle=arr[i];break;}
-      }
-      if(!obCandle) continue;
-      const zone={low:obCandle.low,high:obCandle.high,epoch:obCandle.epoch};
-      if(!this.isMitigated(zone,tf,dir)) return zone;
-    }
-    return null;
-  },
-
-  premiumDiscount(price){
-    const src=this.getCompleted(300,true);
-    if(!src||src.length<10) return 'discount';
-    const sl=src.slice(-50);
-    const H=Math.max(...sl.map(c=>c.high)),L=Math.min(...sl.map(c=>c.low));
-    const eq=(H+L)/2;
-    if(price<eq) return 'discount';
-    if(price>eq) return 'premium';
-    return 'eq';
-  },
-
-  m15TrendBias(){
-    const arr=this.getCompleted(900,true); if(!arr||arr.length<20) return 'neutral';
-    const sl=arr.slice(-24); const n=sl.length; const mid2=Math.floor(n/2);
-    const fH=Math.max(...sl.slice(0,mid2).map(c=>c.high)),fL=Math.min(...sl.slice(0,mid2).map(c=>c.low));
-    const sH=Math.max(...sl.slice(mid2).map(c=>c.high)),sL=Math.min(...sl.slice(mid2).map(c=>c.low));
-    const H=Math.max(...sl.map(c=>c.high)),L=Math.min(...sl.map(c=>c.low));
-    const closeAboveEQ=sl[n-1].close>(H+L)/2;
-    if(sH>fH&&sL>fL) return 'bull';
-    if(sH<fH&&sL<fL) return 'bear';
-    return closeAboveEQ?'bull':'bear';
-  },
-
-  m5TrendBias(){
-    const arr=this.getCompleted(300,true); if(!arr||arr.length<10) return 'neutral';
-    const sl=arr.slice(-20); const n=sl.length; const mid2=Math.floor(n/2);
-    const fH=Math.max(...sl.slice(0,mid2).map(c=>c.high)),fL=Math.min(...sl.slice(0,mid2).map(c=>c.low));
-    const sH=Math.max(...sl.slice(mid2).map(c=>c.high)),sL=Math.min(...sl.slice(mid2).map(c=>c.low));
-    const H=Math.max(...sl.map(c=>c.high)),L=Math.min(...sl.map(c=>c.low));
-    if(sH>fH&&sL>fL) return 'bull';
-    if(sH<fH&&sL<fL) return 'bear';
-    const r5=sl.slice(-5),p5=sl.slice(-10,-5);
-    if(r5.length>=3&&p5.length>=3){
-      const ra=r5.reduce((s,c)=>s+c.close,0)/r5.length,pa=p5.reduce((s,c)=>s+c.close,0)/p5.length;
-      if(ra>pa*1.001) return 'bull';
-      if(ra<pa*0.999) return 'bear';
-    }
-    return sl[n-1].close>(H+L)/2?'bull':'bear';
-  },
-
-  m1TrendBias(){
-    const arr=this.getCompleted(60,true); if(!arr||arr.length<8) return 'neutral';
-    const sl=arr.slice(-15); const n=sl.length; const mid2=Math.floor(n/2);
-    const fH=Math.max(...sl.slice(0,mid2).map(c=>c.high)),fL=Math.min(...sl.slice(0,mid2).map(c=>c.low));
-    const sH=Math.max(...sl.slice(mid2).map(c=>c.high)),sL=Math.min(...sl.slice(mid2).map(c=>c.low));
-    const H=Math.max(...sl.map(c=>c.high)),L=Math.min(...sl.map(c=>c.low));
-    if(sH>fH&&sL>fL) return 'bull';
-    if(sH<fH&&sL<fL) return 'bear';
-    const r5=sl.slice(-5),p5=sl.slice(-10,-5);
-    if(r5.length>=3&&p5.length>=3){
-      const ra=r5.reduce((s,c)=>s+c.close,0)/r5.length,pa=p5.reduce((s,c)=>s+c.close,0)/p5.length;
-      if(ra>pa*1.0005) return 'bull';
-      if(ra<pa*0.9995) return 'bear';
-    }
-    return sl[n-1].close>(H+L)/2?'bull':'bear';
-  },
-
-  m5SwingHigh(){ const arr=this.getCompleted(300,true); if(!arr||arr.length<7) return null; const s=this.findSwingHigh(arr,20,3,3); return s?s.price:null; },
-  m5SwingLow(){  const arr=this.getCompleted(300,true); if(!arr||arr.length<7) return null; const s=this.findSwingLow(arr,20,3,3);  return s?s.price:null; },
-
-  m5BullishFVG(){
-    const arr=this.getCompleted(300); if(!arr||arr.length<5) return null;
-    const sl=arr.slice(-30);
-    for(let i=sl.length-3;i>=0;i--){
-      if(sl[i+2]&&sl[i].high<sl[i+2].low){
-        const zone={low:sl[i].high,high:sl[i+2].low,epoch:sl[i+2].epoch,tf:'M5'};
-        if(!this.isMitigated(zone,300,'bull')) return zone;
-      }
-    }
-    return null;
-  },
-  m5BearishFVG(){
-    const arr=this.getCompleted(300); if(!arr||arr.length<5) return null;
-    const sl=arr.slice(-30);
-    for(let i=sl.length-3;i>=0;i--){
-      if(sl[i+2]&&sl[i].low>sl[i+2].high){
-        const zone={low:sl[i+2].high,high:sl[i].low,epoch:sl[i+2].epoch,tf:'M5'};
-        if(!this.isMitigated(zone,300,'bear')) return zone;
-      }
-    }
-    return null;
-  },
-  m5BullishOB(){ return this.findOB(300,'bull'); },
-  m5BearishOB(){ return this.findOB(300,'bear'); },
-
-  htfConflCheck(dir,m1Score=0){
-    const isBull=dir==='UP';
-    const m5HTFBias=this.m5TrendBias(), m1ConfBias=this.m1TrendBias(), m5PD=this.premiumDiscount(mid);
-    const m5HTFAligned=isBull?m5HTFBias==='bull':m5HTFBias==='bear';
-    const m1ConfAligned=isBull?m1ConfBias==='bull':m1ConfBias==='bear';
-    const counterTrendOk=!m5HTFAligned&&m1ConfAligned;
-    const m5FVG=isBull?this.m5BullishFVG():this.m5BearishFVG();
-    const m5OB=isBull?this.m5BullishOB():this.m5BearishOB();
-    const inM5FVG=m5FVG&&mid>=m5FVG.low&&mid<=m5FVG.high;
-    const inM5OB=m5OB&&mid>=m5OB.low&&mid<=m5OB.high;
-    const m5SH=this.m5SwingHigh(), m5SL=this.m5SwingLow();
-    const liquidityOk=(isBull&&m5SL!==null&&mid>m5SL)||(!isBull&&m5SH!==null&&mid<m5SH);
-    const pdOk=isBull?m5PD==='discount':m5PD==='premium';
-    let score=0;
-    if(m5HTFAligned) score+=4; if(m1ConfAligned) score+=3;
-    if(m5FVG) score+=1; if(m5OB) score+=1; if(pdOk) score+=1; if(liquidityOk) score+=1;
-    const strongSetupBypass=m1Score>=10&&m1ConfAligned&&pdOk&&liquidityOk;
-    const htfGateOk=(m5HTFAligned&&m1ConfAligned)||(counterTrendOk&&score>=5&&(m5FVG||m5OB))||strongSetupBypass;
-    return {m15Bias:m5HTFBias,m5Bias:m1ConfBias,m15Aligned:m5HTFAligned,m5Aligned:m1ConfAligned,counterTrendOk,htfGateOk,score,m5FVG,m5OB,m15FVG:null,m15OB:null,inM5FVG,inM5OB,inM15FVG:false,inM15OB:false,pdOk,liquidityOk,m15PD:m5PD,strongSetupBypass,m1Score};
   },
 
   activeSession(){
@@ -933,154 +741,26 @@ const strategy = {
   inKillZone(){ const h=new Date().getUTCHours(); return (h>=0&&h<3)||(h>=7&&h<10)||(h>=13&&h<16); },
   activeKillZone(){ const h=new Date().getUTCHours(); if(h>=0&&h<3) return 'ASIAN KZ'; if(h>=7&&h<10) return 'LONDON KZ'; if(h>=13&&h<16) return 'NY KZ'; return null; },
 
-  zonesOverlap(z1,z2){ if(!z1||!z2) return false; return z1.low<=z2.high&&z1.high>=z2.low; },
-  entryZone(ob,s,e){ const sz=ob.high-ob.low; return {low:ob.low+sz*s,high:ob.low+sz*e}; },
+  // body-to-range ratio [0..1]
+  bodyRatio(c){ if(!c) return 0; const r=c.high-c.low; return r===0?0:Math.abs(c.close-c.open)/r; },
 
-  bullishMSS(){ const arr=candles[60]; if(arr.length<5) return false; const w=arr.slice(-20),p=w.slice(0,-1),l=w[w.length-1]; return l.close>Math.max(...p.map(c=>c.high)); },
-  bearishMSS(){ const arr=candles[60]; if(arr.length<5) return false; const w=arr.slice(-20),p=w.slice(0,-1),l=w[w.length-1]; return l.close<Math.min(...p.map(c=>c.low)); },
-
-  displacementStrength(c){ if(!c) return 0; const body=Math.abs(c.close-c.open),total=c.high-c.low; return total===0?0:body/total; },
-  bullishDisplacement(c){ return !!c&&c.close>c.open&&this.displacementStrength(c)>=0.65; },
-  bearishDisplacement(c){ return !!c&&c.close<c.open&&this.displacementStrength(c)>=0.65; },
-
-  bullishScore(bms){
-    // M1-only scoring — no HTF filters
-    let score=0;
-    const last=candles[60]; if(!last||!last.length) return 0;
-    const lastCandle=last[last.length-1];
-    const _ob=bms&&bms.valid?bms.ob:null;
-    const _fvg=bms&&bms.valid?bms.fvg:null;
-    if(bms&&bms.valid)                              score+=3; // BMS confirmed
-    if(this.bullishMSS())                           score+=2; // MSS candle
-    if(this.bullishDisplacement(lastCandle))        score+=2; // strong M1 displacement
-    if(bms&&this.bullishDisplacement(bms.bmsCandle))score+=1; // BMS candle strength
-    if(_ob)                                         score+=2; // M1 OB present
-    if(_fvg)                                        score+=2; // M1 FVG present
-    if(this.zonesOverlap(_ob,_fvg))                 score+=2; // OB+FVG confluence
-    if(this.premiumDiscount(mid)==='discount')       score+=1; // price in discount
-    if(this.inKillZone())                           score+=2; // kill zone timing
-    return score;
-  },
-  bearishScore(bms){
-    // M1-only scoring — no HTF filters
-    let score=0;
-    const last=candles[60]; if(!last||!last.length) return 0;
-    const lastCandle=last[last.length-1];
-    const _ob=bms&&bms.valid?bms.ob:null;
-    const _fvg=bms&&bms.valid?bms.fvg:null;
-    if(bms&&bms.valid)                              score+=3; // BMS confirmed
-    if(this.bearishMSS())                           score+=2; // MSS candle
-    if(this.bearishDisplacement(lastCandle))        score+=2; // strong M1 displacement
-    if(bms&&this.bearishDisplacement(bms.bmsCandle))score+=1; // BMS candle strength
-    if(_ob)                                         score+=2; // M1 OB present
-    if(_fvg)                                        score+=2; // M1 FVG present
-    if(this.zonesOverlap(_ob,_fvg))                 score+=2; // OB+FVG confluence
-    if(this.premiumDiscount(mid)==='premium')        score+=1; // price in premium
-    if(this.inKillZone())                           score+=2; // kill zone timing
-    return score;
+  // 10-bar average true range (M1)
+  calcATR(periods=10){
+    const arr=candles[60]; if(!arr||arr.length<periods+1) return 1.5;
+    const sl=arr.slice(-(periods+1)); let s=0;
+    for(let i=1;i<sl.length;i++){const c=sl[i],p=sl[i-1];s+=Math.max(c.high-c.low,Math.abs(c.high-p.close),Math.abs(c.low-p.close));}
+    return Math.max(0.3,s/periods);
   },
 
-  bullishBMS(){
-    const m1=candles[60]; if(m1.length<10) return {valid:false};
-    const arr=m1.slice(-80),n=arr.length;
-    const swing=this.findSwingLow(arr,30,3,3); if(!swing) return {valid:false};
-    const swingLowIdx=swing.idx,swingLowPrice=swing.price;
-    let sweepIdx=-1;
-    for(let i=swingLowIdx+1;i<n;i++){ if(arr[i].low<=swingLowPrice&&arr[i].close>swingLowPrice){sweepIdx=i;break;} }
-    if(sweepIdx===-1){const c=arr[swingLowIdx];const lw=Math.min(c.open,c.close)-c.low,body=Math.abs(c.close-c.open);if(lw>body*0.5&&c.close>c.low+(c.high-c.low)*0.3) sweepIdx=swingLowIdx;}
-    if(sweepIdx===-1) return {valid:false};
-    let bounceIdx=-1;
-    for(let i=sweepIdx+1;i<n;i++){if(this.bullishDisplacement(arr[i])){bounceIdx=i;break;}}
-    if(bounceIdx===-1&&this.bullishDisplacement(arr[sweepIdx])) bounceIdx=sweepIdx;
-    if(bounceIdx===-1){for(let i=sweepIdx+1;i<n;i++){if(arr[i].close>arr[i].open&&this.displacementStrength(arr[i])>=0.50){bounceIdx=i;break;}}}
-    if(bounceIdx===-1||sweepIdx<n-40) return {valid:false};
-    let obCandle=null;
-    for(let i=bounceIdx-1;i>=Math.max(0,bounceIdx-15);i--){if(arr[i].close<arr[i].open){obCandle=arr[i];break;}}
-    if(!obCandle) obCandle=arr[Math.max(0,bounceIdx-1)];
-    const ob={low:obCandle.low,high:obCandle.high,idx:bounceIdx-1,epoch:obCandle.epoch};
-    if(this.isMitigated(ob,60,'bull')) return {valid:false};
-    let fvg=null;
-    if(bounceIdx>=2){const c1=arr[bounceIdx-2],c3=arr[bounceIdx];if(c1.high<c3.low){const fz={low:c1.high,high:c3.low,epoch:c3.epoch};if(!this.isMitigated(fz,60,'bull')) fvg=fz;}}
-    return {valid:true,sweepLow:swingLowPrice,ob,fvg,bmsCandle:arr[bounceIdx],sweepIdx,sweepEpoch:arr[sweepIdx].epoch,obCandle};
-  },
-
-  bearishBMS(){
-    const m1=candles[60]; if(m1.length<10) return {valid:false};
-    const arr=m1.slice(-80),n=arr.length;
-    const swing=this.findSwingHigh(arr,30,3,3); if(!swing) return {valid:false};
-    const swingHighIdx=swing.idx,swingHighPrice=swing.price;
-    let sweepIdx=-1;
-    for(let i=swingHighIdx+1;i<n;i++){if(arr[i].high>=swingHighPrice&&arr[i].close<swingHighPrice){sweepIdx=i;break;}}
-    if(sweepIdx===-1){const c=arr[swingHighIdx];const uw=c.high-Math.max(c.open,c.close),body=Math.abs(c.close-c.open);if(uw>body*0.5&&c.close<c.high-(c.high-c.low)*0.3) sweepIdx=swingHighIdx;}
-    if(sweepIdx===-1) return {valid:false};
-    let bounceIdx=-1;
-    for(let i=sweepIdx+1;i<n;i++){if(this.bearishDisplacement(arr[i])){bounceIdx=i;break;}}
-    if(bounceIdx===-1&&this.bearishDisplacement(arr[sweepIdx])) bounceIdx=sweepIdx;
-    if(bounceIdx===-1){for(let i=sweepIdx+1;i<n;i++){if(arr[i].close<arr[i].open&&this.displacementStrength(arr[i])>=0.50){bounceIdx=i;break;}}}
-    if(bounceIdx===-1||sweepIdx<n-40) return {valid:false};
-    let obCandle=null;
-    for(let i=bounceIdx-1;i>=Math.max(0,bounceIdx-15);i--){if(arr[i].close>arr[i].open){obCandle=arr[i];break;}}
-    if(!obCandle) obCandle=arr[Math.max(0,bounceIdx-1)];
-    const ob={low:obCandle.low,high:obCandle.high,idx:bounceIdx-1,epoch:obCandle.epoch};
-    if(this.isMitigated(ob,60,'bear')) return {valid:false};
-    let fvg=null;
-    if(bounceIdx>=2){const c1=arr[bounceIdx-2],c3=arr[bounceIdx];if(c1.low>c3.high){const fz={low:c3.high,high:c1.low,epoch:c3.epoch};if(!this.isMitigated(fz,60,'bear')) fvg=fz;}}
-    return {valid:true,sweepHigh:swingHighPrice,ob,fvg,bmsCandle:arr[bounceIdx],sweepIdx,sweepEpoch:arr[sweepIdx].epoch,obCandle};
-  },
-
-  bullishOB(){     const r=this.bullishBMS(); return r.valid?r.ob:null; },
-  bearishOB(){     const r=this.bearishBMS(); return r.valid?r.ob:null; },
-  bullishFVGZone(){ const r=this.bullishBMS(); return r.valid?r.fvg:null; },
-  bearishFVGZone(){ const r=this.bearishBMS(); return r.valid?r.fvg:null; },
-  bullishOBCandle2(){ const r=this.bullishBMS(); return r.valid?r.obCandle:null; },
-  bearishOBCandle2(){ const r=this.bearishBMS(); return r.valid?r.obCandle:null; },
-
-  evalBuy(price){
-    // Pure M1 structure — no HTF confluence required
-    const bms=this.bullishBMS();
-    if(!bms.valid) return {signal:false,score:0,quality:1,ob:null,fvg:null};
-    const ob=bms.ob, fvg=bms.fvg;
-    const score=this.bullishScore(bms);
-    // Entry zone: inside M1 OB or FVG
-    let inOBZone=false, inFVGZone=false;
-    if(ob){
-      const zone=this.entryZone(ob,0.10,0.85);
-      inOBZone=price>=zone.low&&price<=zone.high;
-    }
-    if(fvg){
-      const sz=fvg.high-fvg.low;
-      inFVGZone=price>=(fvg.low+sz*0.05)&&price<=(fvg.low+sz*0.95);
-    }
-    const inZone = inOBZone || inFVGZone || (!ob && !fvg && bms.valid); // allow entry if BMS but no zone yet
-    const aboveSweep = price > bms.sweepLow;
-    // Signal: BMS confirmed + price above sweep + at least OB or FVG or strong score
-    const signal = bms.valid && aboveSweep && inZone;
-    const quality = score>=12?3:score>=7?2:1;
-    return {signal,quality,score,ob,fvg,sweepIdx:bms.sweepIdx,sweepEpoch:bms.sweepEpoch,sweepLow:bms.sweepLow};
-  },
-
-  evalSell(price){
-    // Pure M1 structure — no HTF confluence required
-    const bms=this.bearishBMS();
-    if(!bms.valid) return {signal:false,score:0,quality:1,ob:null,fvg:null};
-    const ob=bms.ob, fvg=bms.fvg;
-    const score=this.bearishScore(bms);
-    // Entry zone: inside M1 OB or FVG
-    let inOBZone=false, inFVGZone=false;
-    if(ob){
-      const zone=this.entryZone(ob,0.15,0.90);
-      inOBZone=price>=zone.low&&price<=zone.high;
-    }
-    if(fvg){
-      const sz=fvg.high-fvg.low;
-      inFVGZone=price>=(fvg.low+sz*0.05)&&price<=(fvg.low+sz*0.95);
-    }
-    const inZone = inOBZone || inFVGZone || (!ob && !fvg && bms.valid);
-    const belowSweep = price < bms.sweepHigh;
-    // Signal: BMS confirmed + price below sweep + in zone
-    const signal = bms.valid && belowSweep && inZone;
-    const quality = score>=12?3:score>=7?2:1;
-    return {signal,quality,score,ob,fvg,sweepIdx:bms.sweepIdx,sweepEpoch:bms.sweepEpoch,sweepHigh:bms.sweepHigh};
+  // Micro-trend direction from last N closes
+  microTrend(n=5){
+    const arr=this.getCompleted(60,true); if(!arr||arr.length<n+1) return 'neutral';
+    const sl=arr.slice(-n);
+    let up=0,dn=0;
+    for(let i=1;i<sl.length;i++){ if(sl[i].close>sl[i-1].close) up++; else dn++; }
+    if(up>dn) return 'bull';
+    if(dn>up) return 'bear';
+    return 'neutral';
   },
 };
 
@@ -1146,120 +826,8 @@ function drawChart(overridePositions=null, overrideMid=null) {
     }
   }
 
-  // M5 zones
-  function drawM5Zone(zone,col,label){
-    if(!zone) return;
-    const y1=toY(zone.high),y2=toY(zone.low);
-    if(y2<PAD.t||y1>PAD.t+cH) return;
-    ctx.save();
-    ctx.fillStyle=col+'12'; ctx.fillRect(PAD.l,y1,cW,y2-y1);
-    ctx.strokeStyle=col+'60'; ctx.lineWidth=1.2; ctx.setLineDash([4,3]);
-    ctx.strokeRect(PAD.l,y1,cW,y2-y1); ctx.setLineDash([]);
-    const meanY=(y1+y2)/2;
-    ctx.strokeStyle=col+'90'; ctx.lineWidth=1; ctx.setLineDash([2,3]);
-    ctx.beginPath(); ctx.moveTo(PAD.l,meanY); ctx.lineTo(PAD.l+cW,meanY); ctx.stroke(); ctx.setLineDash([]);
-    ctx.font='bold 7.5px "Space Mono"';
-    const labelW=ctx.measureText(label).width+8;
-    const labelX=Math.min(PAD.l+cW-labelW-4,PAD.l+cW-50);
-    const labelY=Math.min(Math.max(y2+10,y1+14),PAD.t+cH-4);
-    ctx.fillStyle='rgba(6,6,10,0.85)';
-    ctx.beginPath(); ctx.roundRect(labelX,labelY-9,labelW,12,2); ctx.fill();
-    ctx.strokeStyle=col+'40'; ctx.lineWidth=0.5; ctx.stroke();
-    ctx.fillStyle=col; ctx.textAlign='left';
-    ctx.fillText(label,labelX+4,labelY);
-    ctx.restore();
-  }
-  drawM5Zone(strategy.m5BullishOB(),'#00d4aa','M5+OB');
-  drawM5Zone(strategy.m5BearishOB(),'#ff4455','M5-OB');
-  drawM5Zone(strategy.m5BullishFVG(),'#22bbff','M5+FVG');
-  drawM5Zone(strategy.m5BearishFVG(),'#ff8833','M5-FVG');
 
-  // M1 OB/FVG zones
-  function drawZone(zone,col,label){
-    if(!zone) return;
-    const y1=toY(zone.high),y2=toY(zone.low);
-    if(y2<PAD.t||y1>PAD.t+cH) return;
-    ctx.fillStyle=col+'10'; ctx.fillRect(PAD.l,y1,cW,y2-y1);
-    ctx.strokeStyle=col+'40'; ctx.lineWidth=1; ctx.setLineDash([]); ctx.strokeRect(PAD.l,y1,cW,y2-y1);
-    const meanY=(y1+y2)/2;
-    ctx.save();
-    ctx.strokeStyle=col+'90'; ctx.lineWidth=1; ctx.setLineDash([3,3]);
-    ctx.beginPath(); ctx.moveTo(PAD.l,meanY); ctx.lineTo(PAD.l+cW,meanY); ctx.stroke(); ctx.setLineDash([]);
-    ctx.fillStyle=col+'cc'; ctx.font='7px "Space Mono"'; ctx.textAlign='left';
-    ctx.fillText(`MT ${((zone.high+zone.low)/2).toFixed(1)}`,PAD.l+3,meanY-2);
-    ctx.restore();
-    ctx.font='bold 8px "Space Mono"';
-    const labelW=ctx.measureText(label).width+8;
-    const labelX=Math.min(PAD.l+cW-labelW-4,PAD.l+cW-35);
-    const labelY=Math.min(Math.max(y1+12,PAD.t+10),PAD.t+cH-4);
-    ctx.fillStyle='rgba(6,6,10,0.85)';
-    ctx.beginPath(); ctx.roundRect(labelX,labelY-9,labelW,12,2); ctx.fill();
-    ctx.strokeStyle=col+'40'; ctx.lineWidth=0.5; ctx.stroke();
-    ctx.fillStyle=col; ctx.textAlign='left';
-    ctx.fillText(label,labelX+4,labelY);
-  }
-  drawZone(strategy.bullishOB(),'#00d4aa','+OB');
-  drawZone(strategy.bearishOB(),'#ff4455','-OB');
-  drawZone(strategy.bullishFVGZone(),'#22bbff','+FVG');
-  drawZone(strategy.bearishFVGZone(),'#ff8833','-FVG');
-
-  // Mark OB candle origin
-  function markOBCandle(obSourceCandle,col){
-    if(!obSourceCandle) return;
-    const candleIdx=vis.findIndex(c=>c.epoch===obSourceCandle.epoch);
-    if(candleIdx===-1) return;
-    const x=PAD.l+(candleIdx+0.5)*slotW+(CANDLE_AREA_W-totalSlots*slotW);
-    if(x<PAD.l||x>PAD.l+CANDLE_AREA_W) return;
-    const y1=toY(obSourceCandle.high),y2=toY(obSourceCandle.low);
-    const bW=Math.max(slotW*0.75,4);
-    ctx.save();
-    ctx.shadowColor=col; ctx.shadowBlur=10;
-    ctx.strokeStyle=col; ctx.lineWidth=1.5;
-    ctx.strokeRect(x-bW/2-1,y1-1,bW+2,y2-y1+2);
-    ctx.shadowBlur=0;
-    ctx.font='bold 7px "Space Mono"'; ctx.textAlign='center';
-    const tag=col==='#00d4aa'?'+OB':'-OB';
-    const tagW=ctx.measureText(tag).width+8;
-    const labelY=Math.max(y1-18,PAD.t+14);
-    ctx.fillStyle='rgba(6,6,10,0.92)';
-    ctx.beginPath(); ctx.roundRect(x-tagW/2,labelY-9,tagW,12,2); ctx.fill();
-    ctx.strokeStyle=col+'60'; ctx.lineWidth=0.5; ctx.stroke();
-    ctx.fillStyle=col; ctx.fillText(tag,x,labelY);
-    ctx.beginPath(); ctx.moveTo(x-3,labelY+3); ctx.lineTo(x+3,labelY+3); ctx.lineTo(x,labelY+7);
-    ctx.closePath(); ctx.fillStyle=col+'cc'; ctx.fill();
-    ctx.restore();
-  }
-  markOBCandle(strategy.bullishOBCandle2(),'#00d4aa');
-  markOBCandle(strategy.bearishOBCandle2(),'#ff4455');
-
-  // Structure markers (BMS/MSS/LQ)
-  (function drawStructureMarkers(){
-    const bullBMS=strategy.bullishBMS(), bearBMS=strategy.bearishBMS();
-    function structLine(price,color,tag,dashed,side){
-      if(!price||price<minP||price>maxP) return;
-      const y=toY(price); if(y<PAD.t||y>PAD.t+cH) return;
-      ctx.save(); ctx.strokeStyle=color; ctx.lineWidth=1;
-      if(dashed) ctx.setLineDash([4,4]); else ctx.setLineDash([]);
-      ctx.beginPath(); ctx.moveTo(PAD.l,y); ctx.lineTo(PAD.l+CANDLE_AREA_W,y); ctx.stroke(); ctx.setLineDash([]);
-      ctx.font='bold 7px "Space Mono"';
-      const tagW=ctx.measureText(tag).width+6;
-      const tagX=side==='right'?PAD.l+CANDLE_AREA_W-tagW-2:PAD.l+2, tagY=y-2;
-      ctx.fillStyle='rgba(6,6,8,0.88)';
-      ctx.beginPath(); ctx.roundRect(tagX,tagY-8,tagW,11,2); ctx.fill();
-      ctx.fillStyle=color; ctx.textAlign='left'; ctx.fillText(tag,tagX+3,tagY);
-      ctx.restore();
-    }
-    if(bullBMS&&bullBMS.valid){
-      if(bullBMS.sweepLow!==undefined) structLine(bullBMS.sweepLow,'rgba(0,212,170,0.70)','LQ',true,'right');
-      if(bullBMS.ob) structLine(bullBMS.ob.high,'rgba(0,212,170,0.55)','BMS',false,'left');
-      if(bullBMS.bmsCandle) structLine(bullBMS.bmsCandle.high,'rgba(68,255,180,0.70)','MSS',false,'right');
-    }
-    if(bearBMS&&bearBMS.valid){
-      if(bearBMS.sweepHigh!==undefined) structLine(bearBMS.sweepHigh,'rgba(255,68,85,0.70)','LQ',true,'right');
-      if(bearBMS.ob) structLine(bearBMS.ob.low,'rgba(255,68,85,0.55)','BMS',false,'left');
-      if(bearBMS.bmsCandle) structLine(bearBMS.bmsCandle.low,'rgba(255,120,130,0.70)','MSS',false,'right');
-    }
-  })();
+  // HFT: clean chart — no zone overlays, only price action candles + position lines
 
   // Draw open position lines (SL, Entry, TP)
   const positions=overridePositions||(AppState.openPositions||[]);
@@ -1288,6 +856,34 @@ function drawChart(overridePositions=null, overrideMid=null) {
     if(pos.slPrice) drawLine(pos.slPrice,slCol,`SL ${pos.slPrice.toFixed(2)}`,'dashed');
     if(pos.tpPrice) drawLine(pos.tpPrice,tpCol,`TP ${pos.tpPrice.toFixed(2)}`,'dashed');
   });
+
+  // Highlight last trigger candle if HFT pattern active
+  (function markTriggerCandle(){
+    const hft = AppState._lastHFT;
+    if (!hft || !hft.triggerCandle) return;
+    const tc = hft.triggerCandle;
+    const idx = vis.findIndex(c => c.epoch === tc.epoch);
+    if (idx === -1) return;
+    const x = PAD.l + (idx + 0.5) * slotW + (CANDLE_AREA_W - totalSlots * slotW);
+    if (x < PAD.l || x > PAD.l + CANDLE_AREA_W) return;
+    const y1 = toY(tc.high), y2 = toY(tc.low);
+    const bW = Math.max(slotW * 0.85, 5);
+    const col = hft.dir === 'UP' ? '#00e676' : '#ff3d57';
+    ctx.save();
+    ctx.shadowColor = col; ctx.shadowBlur = 12;
+    ctx.strokeStyle = col + 'cc'; ctx.lineWidth = 1.5;
+    ctx.strokeRect(x - bW/2 - 1, y1 - 1, bW + 2, y2 - y1 + 2);
+    ctx.shadowBlur = 0;
+    ctx.font = 'bold 7px "Space Mono"'; ctx.textAlign = 'center';
+    const tag = hft.pattern.split(' ')[0] + (hft.dir === 'UP' ? '↑' : '↓');
+    const tagW = ctx.measureText(tag).width + 8;
+    const labelY = Math.max(y1 - 14, PAD.t + 12);
+    ctx.fillStyle = 'rgba(6,6,10,0.92)';
+    ctx.beginPath(); ctx.roundRect(x - tagW/2, labelY - 9, tagW, 12, 2); ctx.fill();
+    ctx.strokeStyle = col + '60'; ctx.lineWidth = 0.5; ctx.stroke();
+    ctx.fillStyle = col; ctx.fillText(tag, x, labelY);
+    ctx.restore();
+  })();
 
   // Candles
   for(let i=0;i<vis.length;i++){
@@ -1410,177 +1006,328 @@ document.querySelectorAll('.tf').forEach(btn=>{
 //  DERIV LIVE FEED ENGINE (from index.html)
 // ══════════════════════════════════════════════════════
 const DerivFeed = {
+  _pingTimer: null,
+
   connect() {
-    if(_derivWS){ try{_derivWS.close();}catch(_){} _derivWS=null; }
-    if(_derivReconnectTimer){ clearTimeout(_derivReconnectTimer); _derivReconnectTimer=null; }
-    UI.setConnStatus('wait','CONNECTING');
-    const ws=new WebSocket(DERIV_WS_URL);
-    _derivWS=ws;
+    // Clear any existing connection and timers
+    clearTimeout(_derivReconnectTimer);
+    clearInterval(this._pingTimer);
+    if (_derivWS) {
+      _derivWS.onclose = null;
+      try { _derivWS.close(); } catch(e) {}
+      _derivWS = null;
+    }
 
-    ws.onopen=()=>{
-      UI.setConnStatus('live','LIVE');
-      AppState.wsConnected=true;
+    UI.setConnStatus('wait', 'CONNECTING');
+    const ws = new WebSocket(DERIV_WS_URL);
+    _derivWS = ws;
+
+    ws.onopen = () => {
+      UI.setConnStatus('live', 'LIVE');
+      AppState.wsConnected = true;
       UI.toast('✓ Deriv connected — XAUUSD streaming');
-      // Request historical OHLC for all three timeframes
-      ws.send(JSON.stringify({ticks_history:DERIV_SYMBOL,adjust_start_time:1,count:500,end:'latest',granularity:60,start:1,style:'candles'}));
-      ws.send(JSON.stringify({ticks_history:DERIV_SYMBOL,adjust_start_time:1,count:200,end:'latest',granularity:300,start:1,style:'candles'}));
-      ws.send(JSON.stringify({ticks_history:DERIV_SYMBOL,adjust_start_time:1,count:100,end:'latest',granularity:900,start:1,style:'candles'}));
-      // Subscribe to real-time ticks
-      ws.send(JSON.stringify({ticks:DERIV_SYMBOL,subscribe:1}));
+
+      // 1. Historical candles — subscribe:1 keeps live OHLC updates flowing
+      [
+        { gran:60,  count:500 },
+        { gran:300, count:200 },
+        { gran:900, count:100 },
+      ].forEach(({ gran, count }) => {
+        ws.send(JSON.stringify({
+          ticks_history  : DERIV_SYMBOL,
+          adjust_start_time: 1,
+          count,
+          end            : 'latest',
+          granularity    : gran,
+          style          : 'candles',
+          subscribe      : 1,          // ← live OHLC stream
+        }));
+      });
+
+      // 2. Real-time tick subscription (bid/ask prices)
+      ws.send(JSON.stringify({ ticks: DERIV_SYMBOL, subscribe: 1 }));
+
+      // 3. Keepalive ping every 25 s (Deriv drops idle sockets at ~60 s)
+      this._pingTimer = setInterval(() => {
+        if (ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({ ping: 1 }));
+        }
+      }, 25000);
     };
 
-    ws.onmessage=evt=>{
-      try{ _handleDerivMsg(JSON.parse(evt.data)); }catch(_){}
+    ws.onmessage = evt => {
+      let msg;
+      try { msg = JSON.parse(evt.data); } catch(e) { return; }
+      _handleDerivMsg(msg);
     };
 
-    ws.onclose=()=>{
-      _derivWS=null;
-      AppState.wsConnected=false;
-      UI.setConnStatus('','OFFLINE');
-      _derivReconnectTimer=setTimeout(()=>DerivFeed.connect(),5000);
+    ws.onclose = () => {
+      clearInterval(this._pingTimer);
+      _derivWS = null;
+      AppState.wsConnected = false;
+      UI.setConnStatus('', 'OFFLINE');
+      // Reconnect after 4 s
+      _derivReconnectTimer = setTimeout(() => DerivFeed.connect(), 4000);
     };
 
-    ws.onerror=()=>{
-      UI.setConnStatus('error','ERROR');
+    ws.onerror = () => {
+      UI.setConnStatus('error', 'ERROR');
     };
   },
 
   disconnect() {
     clearTimeout(_derivReconnectTimer);
-    if(_derivWS){ _derivWS.onclose=null; _derivWS.close(); _derivWS=null; }
-    AppState.wsConnected=false;
-    UI.setConnStatus('','OFFLINE');
+    clearInterval(this._pingTimer);
+    if (_derivWS) {
+      _derivWS.onclose = null;
+      _derivWS.close();
+      _derivWS = null;
+    }
+    AppState.wsConnected = false;
+    UI.setConnStatus('', 'OFFLINE');
     UI.toast('Disconnected from Deriv');
   }
 };
 
 function _handleDerivMsg(msg) {
-  if(msg.error){ console.warn('Deriv:',msg.error.message); return; }
+  // Surface API errors visibly
+  if (msg.error) {
+    console.error('Deriv error:', msg.error.code, msg.error.message);
+    UI.toast('Deriv: ' + msg.error.message);
+    return;
+  }
 
-  // Real-time tick
-  if(msg.msg_type==='tick'&&msg.tick){
-    const t=msg.tick;
-    const newBid=+(t.bid||t.quote), newAsk=+(t.ask||t.quote);
-    const newMid=(newBid+newAsk)/2;
-    const epochSec=t.epoch;
+  // ── Ping response — ignore ──
+  if (msg.msg_type === 'ping') return;
 
-    if(mid&&newMid!==mid){
-      const diff=newMid-mid, dir=diff>0?'up':'dn';
-      flashPrice(dir);
-    }
+  // ── Real-time tick (bid/ask/price) ──
+  if (msg.msg_type === 'tick' && msg.tick) {
+    const t      = msg.tick;
+    const newBid = t.bid  ? +t.bid  : +t.quote;
+    const newAsk = t.ask  ? +t.ask  : +t.quote;
+    const newMid = (newBid + newAsk) / 2;
+    const epoch  = +t.epoch;
 
-    bid=newBid; ask=newAsk; prevMid=mid; mid=newMid;
-    AppState.bidPrice=bid; AppState.askPrice=ask;
+    if (!newMid || isNaN(newMid)) return;
 
-    // Update header price display
-    const fmt=v=>v.toFixed(2);
-    $('live-bid').textContent=fmt(bid);
-    $('live-ask').textContent=fmt(ask);
+    // Flash direction
+    if (mid && newMid !== mid) flashPrice(newMid > mid ? 'up' : 'dn');
 
-    // Spread display
-    const spreadPts=Math.round((ask-bid)*100)/100;
-    const spreadEl=$('d-spread'); if(spreadEl) spreadEl.textContent=spreadPts.toFixed(2)+'pt';
+    // Update globals
+    prevMid = mid;
+    bid = newBid; ask = newAsk; mid = newMid;
+    AppState.bidPrice = bid;
+    AppState.askPrice = ask;
 
-    _processTick(newMid,epochSec);
+    // Header prices
+    const b = $('live-bid'), a = $('live-ask');
+    if (b) b.textContent = bid.toFixed(2);
+    if (a) a.textContent = ask.toFixed(2);
+
+    // Spread
+    const sp = $('d-spread');
+    if (sp) sp.textContent = (ask - bid).toFixed(2) + 'pt';
+
+    // Build candles from tick stream
+    _processTick(newMid, epoch);
+
+    // Feed tick into ultra-HFT scanner ring buffer
+    HFTScanner.pushTick(newMid);
+
+    // Paper trader SL/TP check (runs first on every tick)
     PaperTrader.tick(newMid);
 
-    // HFT: run gate eval on every tick (no throttle — speed is everything)
+    // Gate + signal evaluation + trade entry
     GateEval.run();
+
+    // Redraw chart on every tick
+    drawChart();
+    return;
   }
 
-  // Historical candle batch
-  if(msg.msg_type==='candles'&&msg.candles){
-    const gran=msg.echo_req&&+msg.echo_req.granularity;
-    if(!gran||!candles[gran]) return;
-    const arr=msg.candles.map(c=>({epoch:+c.epoch,open:+c.open,high:+c.high,low:+c.low,close:+c.close}));
-    if(arr.length){ candles[gran]=arr; drawChart(); }
-  }
-
-  // Live OHLC update
-  if(msg.msg_type==='ohlc'&&msg.ohlc){
-    const o=msg.ohlc, gran=+o.granularity, arr=candles[gran];
-    if(!arr) return;
-    const bar={epoch:+o.open_time,open:+o.open,high:+o.high,low:+o.low,close:+o.close};
-    const last=arr.length?arr[arr.length-1]:null;
-    if(last&&last.epoch===bar.epoch) arr[arr.length-1]=bar;
-    else if(!last||bar.epoch>last.epoch){
-      arr.push(bar);
-      const cap=gran===60?501:gran===300?201:101;
-      if(arr.length>cap) arr.shift();
+  // ── Historical candle batch (initial load) ──
+  if (msg.msg_type === 'candles' && msg.candles) {
+    const gran = msg.echo_req ? +msg.echo_req.granularity : 0;
+    if (!gran || !candles[gran]) return;
+    const loaded = msg.candles.map(c => ({
+      epoch : +c.epoch,
+      open  : +c.open,
+      high  : +c.high,
+      low   : +c.low,
+      close : +c.close,
+    }));
+    if (!loaded.length) return;
+    // Replace the array wholesale — drop any stale tick-built bars
+    candles[gran] = loaded;
+    // Reset forming so _processTick re-anchors cleanly
+    _forming[gran] = null;
+    drawChart();
+    if (gran === 60) {
+      const n = loaded.length;
+      SignalLog.add('info', `M1 history loaded: ${n} candles, last close ${loaded[n-1].close.toFixed(2)}`, null);
     }
+    return;
+  }
+
+  // ── Live OHLC update (Deriv server-side candle builder) ──
+  if (msg.msg_type === 'ohlc' && msg.ohlc) {
+    const o    = msg.ohlc;
+    const gran = +o.granularity;
+    const arr  = candles[gran];
+    if (!arr) return;
+    const bar = {
+      epoch : +o.open_time,
+      open  : +o.open,
+      high  : +o.high,
+      low   : +o.low,
+      close : +o.close,
+    };
+    const last = arr.length ? arr[arr.length - 1] : null;
+    if (last && last.epoch === bar.epoch) {
+      // Update live bar in-place
+      arr[arr.length - 1] = bar;
+    } else if (!last || bar.epoch > last.epoch) {
+      arr.push(bar);
+      const cap = gran === 60 ? 500 : gran === 300 ? 200 : 100;
+      if (arr.length > cap) arr.shift();
+    }
+    return;
   }
 }
 
 // ══════════════════════════════════════════════════════
-//  GATE EVALUATION ENGINE (bridge: Deriv candles → XAU gates)
+//  ULTRA-HFT TICK SCANNER
+//  Fires on EVERY tick — no closed candle required.
+//  Uses live bid/ask momentum to decide direction.
+//  Produces 10+ signals per 2 minutes at typical
+//  XAUUSD tick velocity (~1 tick/sec).
+// ══════════════════════════════════════════════════════
+const HFTScanner = {
+  // Tick history ring buffer (last 20 mid prices)
+  _tickBuf  : [],
+  _MAX_BUF  : 20,
+
+  pushTick(price) {
+    this._tickBuf.push(price);
+    if (this._tickBuf.length > this._MAX_BUF) this._tickBuf.shift();
+  },
+
+  // Returns { dir:'UP'|'DOWN', pattern:string, score:int, quality:int } or null
+  scan() {
+    const buf = this._tickBuf;
+    if (buf.length < 6) return null;
+
+    const n    = buf.length;
+    const last = buf[n - 1];
+    const prev = buf[n - 2];
+
+    // ── Tick delta (instant momentum) ──
+    const delta  = last - prev;
+    const absDlt = Math.abs(delta);
+    if (absDlt < 0.01) return null;   // flat tick — no signal
+
+    // ── Short-term slope: last 5 ticks vs ticks 5-10 ago ──
+    const win = Math.min(5, Math.floor(n / 2));
+    const recentSlice = buf.slice(-win);
+    const olderSlice  = buf.slice(-win * 2, -win);
+    if (!olderSlice.length) return null;
+
+    const recentAvg = recentSlice.reduce((s,v)=>s+v,0) / recentSlice.length;
+    const olderAvg  = olderSlice.reduce((s,v)=>s+v,0)  / olderSlice.length;
+    const slope     = recentAvg - olderAvg;
+
+    // ── Consecutive tick direction streak ──
+    let streak = 1;
+    for (let i = n - 2; i >= 0; i--) {
+      if ((delta > 0 && buf[i+1] > buf[i]) || (delta < 0 && buf[i+1] < buf[i])) streak++;
+      else break;
+    }
+
+    // ── Volatility: range of last 10 ticks ──
+    const window10  = buf.slice(-10);
+    const tickRange = Math.max(...window10) - Math.min(...window10);
+    const tickAtr   = tickRange / (window10.length - 1 || 1);
+
+    // Require at least 2 consecutive ticks in same direction AND slope alignment
+    if (streak < 2) return null;
+
+    const isBull = delta > 0 && slope > 0;
+    const isBear = delta < 0 && slope < 0;
+    if (!isBull && !isBear) return null;
+
+    const dir   = isBull ? 'UP' : 'DOWN';
+    const score = Math.min(10, streak * 2 + Math.round(absDlt * 10));
+    const qual  = streak >= 4 ? 3 : streak >= 3 ? 2 : 1;
+
+    // ── Pattern label (pure tick-based) ──
+    let pattern;
+    if (streak >= 4)    pattern = isBull ? 'Tick Surge ↑'   : 'Tick Surge ↓';
+    else if (streak === 3) pattern = isBull ? 'Momentum ↑'  : 'Momentum ↓';
+    else                pattern = isBull ? 'Tick Push ↑'    : 'Tick Push ↓';
+
+    return { dir, pattern, score, quality: qual, tickRange, streak };
+  },
+
+  // Legacy compat (not used in ultra-HFT mode but keeps gate eval clean)
+  _isPin() { return false; },
+};
+
+// ══════════════════════════════════════════════════════
+//  GATE EVALUATION ENGINE
 // ══════════════════════════════════════════════════════
 const GateEval = {
   _lastHFTDir : null,
   _lastHFTTime: 0,
 
   run() {
-    if (!mid || !candles[60].length) return;
+    if (!mid) return;
 
-    const arr        = candles[60];
-    const lastCandle = arr[arr.length - 1];
-    const inSession  = strategy.activeSession() !== 'OFF-HOURS';
+    const inSession = strategy.activeSession() !== 'OFF-HOURS';
+    const hft       = HFTScanner.scan();
 
-    // ── HFT pattern scan (primary signal source) ──
-    const hft = HFTScanner.scan();
-
-    // ── Gate status (visual feedback — all M1 based) ──
-    const bullBMS = strategy.bullishBMS();
-    const bearBMS = strategy.bearishBMS();
-    const g1 = bullBMS.valid || bearBMS.valid || !!(hft); // structure or HFT pattern
-    const g2 = !!(strategy.bullishFVGZone() || strategy.bearishFVGZone()) || !!(hft && hft.pattern.includes('Sweep'));
-    const g3 = !!(strategy.bullishOB() || strategy.bearishOB()) || !!(hft && hft.pattern.includes('OB'));
-    const g4 = strategy.bullishDisplacement(lastCandle) || strategy.bearishDisplacement(lastCandle) || !!(hft && hft.score >= 6);
-    const g5 = inSession;
+    // ── Gate status — tick-level metrics ──
+    const g1 = !!(hft);                                      // signal detected
+    const g2 = !!(hft && hft.streak >= 2);                  // tick streak ≥ 2
+    const g3 = !!(hft && hft.streak >= 3);                  // strong streak ≥ 3
+    const g4 = !!(hft && hft.score >= 4);                   // score threshold
+    const g5 = inSession;                                    // active session
 
     const gates = [g1, g2, g3, g4, g5];
     AppState.gateState['M1']  = gates;
     AppState.gateState['M5']  = gates;
     AppState.gateState['M15'] = gates;
 
-    // ── Determine displayed signal ──
     const prevSignal = AppState.currentSignal;
 
-    if (hft && inSession) {
-      AppState.currentSignal = hft.dir === 'UP' ? 'bullish' : 'bearish';
-      AppState.signalScore   = hft.score;
-      AppState.signalQuality = hft.quality;
+    if (hft) {
+      AppState.currentSignal  = hft.dir === 'UP' ? 'bullish' : 'bearish';
+      AppState.signalScore    = hft.score;
+      AppState.signalQuality  = hft.quality;
       AppState.lastHFTPattern = hft.pattern;
+      AppState._lastHFT       = hft;
 
       const isNew = AppState.currentSignal !== prevSignal
-                 || Date.now() - this._lastHFTTime > 8000;
-
+                 || Date.now() - this._lastHFTTime > 3000;
       if (isNew) {
         const dir   = hft.dir === 'UP' ? 'buy' : 'sell';
-        const grade = hft.quality >= 3 ? '★★★' : '★★';
+        const grade = hft.quality >= 3 ? '★★★' : hft.quality === 2 ? '★★' : '★';
         SignalLog.add(dir,
-          `${hft.pattern} ${grade} | score:${hft.score} | SL@${hft.slPrice.toFixed(2)} | ${strategy.activeSession()}`,
+          `${hft.pattern} ${grade} | score:${hft.score} | streak:${hft.streak} | ${strategy.activeSession()}`,
           mid);
         this._lastHFTTime = Date.now();
       }
     } else {
-      AppState.currentSignal = 'standby';
-      AppState.signalScore   = 0;
-      AppState.signalQuality = 1;
+      AppState.currentSignal  = 'standby';
+      AppState.signalScore    = 0;
+      AppState.signalQuality  = 1;
       AppState.lastHFTPattern = null;
+      AppState._lastHFT       = null;
     }
 
-    // ── Fire trade entry ──
-    if (hft && inSession && Date.now() > PaperTrader._cooldownUntil) {
-      const evalResult = {
-        signal    : true,
-        score     : hft.score,
-        quality   : hft.quality,
-        ob        : { low: hft.triggerCandle.low, high: hft.triggerCandle.high, epoch: hft.triggerCandle.epoch },
-        fvg       : null,
-        slOverride: hft.slPrice,
-        pattern   : hft.pattern,
-      };
-      PaperTrader.tryOpen(hft.dir, evalResult);
+    // ── Fire trade: on every tick with signal, no inSession guard needed
+    //    (session filter is advisory — ultra-HFT trades any hour) ──
+    if (hft && Date.now() > PaperTrader._cooldownUntil) {
+      PaperTrader.tryOpen(hft.dir, hft.pattern);
     }
 
     AppState.lastGateEval = new Date();
@@ -1633,13 +1380,14 @@ const AppState = {
   signalScore: 0,
   signalQuality: 1,
   lastGateEval: null,
+  _lastHFT: null,
   lastGateEvalTime: 0,
   openPositions: [],
   tradeHistory: [],
   wins: 0, losses: 0, tpExits: 0, slExits: 0, beExits: 0, trailExits: 0,
   bestTrade: 0,
   config: {
-    balance: 10000, riskPct:0.5, maxTrades:5, tpMultiple:2.5, partialTpPct:50,
+    balance: 10000, riskPct:0.3, maxTrades:3, tpPt:0.08, partialTpPct:0,
     beTriggerR:1.0, beBufferPips:0.5, phase1Atr:1.5, phase2Atr:2.5,
     sessions:'london_ny', g6Enabled:true, atrGuard:true,
   }
@@ -1669,15 +1417,15 @@ const AppSettings = {
     fld('s-balance',   c.balance    || 10000);
     fld('s-risk',      c.riskPct    || 0.5);
     fld('s-max-trades',c.maxTrades  || 5);
-    fld('s-tp',        c.tpMultiple || 1.5);
-    fld('s-max-dur',   c.maxDurMin  || 3);
-    fld('s-cooldown',  c.cooldownSec|| 12);
+    fld('s-tp',        c.tpPt       || 0.08);
+    fld('s-max-dur',   c.maxDurSec  || 8);
+    fld('s-cooldown',  c.cooldownSec|| 3);
     fld('s-min-disp',  Math.round((c.minDisp || 0.52) * 100));
     fld('s-sessions',  c.sessions   || 'london_ny');
     // Apply loaded HFT config to engine
-    PaperTrader.HFT_TP_MULT  = c.tpMultiple || 1.5;
-    PaperTrader.HFT_MAX_MS   = (c.maxDurMin  || 3)  * 60000;
-    PaperTrader.HFT_COOLDOWN = (c.cooldownSec|| 12) * 1000;
+    PaperTrader.HFT_TP_TICKS  = c.tpPt       || 0.08;
+    PaperTrader.HFT_MAX_MS    = (c.maxDurSec  || 8) * 1000;
+    PaperTrader.HFT_COOLDOWN  = (c.cooldownSec|| 3) * 1000;
     HFTScanner.MIN_DISP      = c.minDisp || 0.52;
     const setTog=(id,on)=>{const el=$(id);if(el) el.classList.toggle('on',!!on);};
     setTog('tog-g6',c.g6Enabled); setTog('tog-atr',c.atrGuard);
@@ -1697,9 +1445,9 @@ const AppSettings = {
     c.balance=num('s-balance');
     c.riskPct      = num('s-risk');
     c.maxTrades    = Math.floor(num('s-max-trades'));
-    c.tpMultiple   = num('s-tp')      || 1.5;
-    c.maxDurMin    = num('s-max-dur') || 3;
-    c.cooldownSec  = num('s-cooldown')|| 12;
+    c.tpPt         = num('s-tp')      || 0.08;
+    c.maxDurSec    = num('s-max-dur') || 8;
+    c.cooldownSec  = num('s-cooldown')|| 3;
     c.minDisp      = (num('s-min-disp') || 52) / 100;
     c.partialTpPct = 0;   // disabled in HFT mode
     c.beTriggerR   = 999; // disabled in HFT mode
@@ -1707,9 +1455,9 @@ const AppSettings = {
     c.phase1Atr    = num('s-p1-atr') || 1.5;
     c.phase2Atr    = num('s-p2-atr') || 2.5;
     // Apply to live HFT engine
-    PaperTrader.HFT_TP_MULT  = c.tpMultiple;
-    PaperTrader.HFT_MAX_MS   = c.maxDurMin * 60000;
-    PaperTrader.HFT_COOLDOWN = c.cooldownSec * 1000;
+    PaperTrader.HFT_TP_TICKS  = c.tpPt;
+    PaperTrader.HFT_MAX_MS    = c.maxDurSec * 1000;
+    PaperTrader.HFT_COOLDOWN  = c.cooldownSec * 1000;
     HFTScanner.MIN_DISP      = c.minDisp;
     c.sessions=str('s-sessions');
     c.g6Enabled=tog('tog-g6'); c.atrGuard=tog('tog-atr');
@@ -2098,18 +1846,23 @@ const FileExport = {
 
 
 // ══════════════════════════════════════════════════════
-//  PAPER TRADING ENGINE  — HFT edition
-//  Quick in-and-out scalper: tight SL, fixed TP, time exit
+//  PAPER TRADING ENGINE — Ultra-HFT Tick Scalper
+//  Trades every tick. TP = 0.08pt fixed. SL = 0.25pt.
+//  Target: close in profit within 2–6 seconds.
+//  10+ trades per 2 minutes = 1 trade per ~10s budget.
+//  Cooldown: 3s. Max open: 3 simultaneous.
 // ══════════════════════════════════════════════════════
 const PaperTrader = {
   enabled       : false,
   _nextId       : 1,
-  _cooldownUntil: 0,          // ms timestamp: no new entries before this
+  _cooldownUntil: 0,
 
-  // ── HFT CONFIG (overrides AppState.config for speed) ──
-  HFT_TP_MULT   : 1.5,        // tight 1.5R target
-  HFT_MAX_MS    : 3 * 60000,  // auto-close after 3 minutes
-  HFT_COOLDOWN  : 12000,      // 12 s between entries
+  // ── ULTRA-HFT CONFIG ──
+  HFT_TP_TICKS  : 0.08,   // fixed TP distance in price (8 pts = ~$8/lot)
+  HFT_SL_TICKS  : 0.25,   // fixed SL distance in price (25 pts — wide enough to breathe)
+  HFT_MAX_MS    : 8000,   // force-close at 8 seconds (most TPs hit in 2–4s)
+  HFT_COOLDOWN  : 3000,   // 3 s between entries → 10+ trades per 2 minutes
+  HFT_MAX_OPEN  : 3,      // up to 3 simultaneous positions
 
   toggle() {
     this.enabled = !this.enabled;
@@ -2121,60 +1874,32 @@ const PaperTrader = {
       btn.className = 'bot-btn ' + (this.enabled ? 'bot-active' : 'bot-inactive');
     }
     if (this.enabled) {
-      UI.toast('▶ HFT Paper Trader ACTIVE — scalping M1');
+      UI.toast('⚡ Ultra-HFT ACTIVE — tick scalping | 3s cooldown | 8s max');
       SignalLog.add('info',
-        `HFT started | Bal:$${AppState.accountBalance.toFixed(2)} | Risk:${AppState.config.riskPct}% | TP:${this.HFT_TP_MULT}R | MaxDur:3min`,
+        `Ultra-HFT started | Bal:$${AppState.accountBalance.toFixed(2)} | TP:${this.HFT_TP_TICKS}pt | SL:${this.HFT_SL_TICKS}pt | Max:${this.HFT_MAX_MS/1000}s`,
         null);
     } else {
-      UI.toast('⏹ HFT Trader PAUSED');
-      SignalLog.add('info', 'HFT trader paused', null);
+      UI.toast('⏹ Ultra-HFT PAUSED');
+      SignalLog.add('info', 'Ultra-HFT paused', null);
     }
   },
 
-  calcATR(gran = 60, periods = 10) {
-    const arr = candles[gran];
-    if (!arr || arr.length < periods + 1) return 1.5;
-    const slice = arr.slice(-(periods + 1));
-    let sum = 0;
-    for (let i = 1; i < slice.length; i++) {
-      const c = slice[i], p = slice[i - 1];
-      sum += Math.max(c.high - c.low, Math.abs(c.high - p.close), Math.abs(c.low - p.close));
-    }
-    return Math.max(0.3, sum / periods);
-  },
-
-  tryOpen(dir, evalResult) {
+  tryOpen(dir, pattern) {
     if (!this.enabled) return;
-    if (AppState.openPositions.length >= (AppState.config.maxTrades || 5)) return;
+    if (AppState.openPositions.length >= this.HFT_MAX_OPEN) return;
     if (Date.now() < this._cooldownUntil) return;
     if (!bid || !ask || mid === 0) return;
 
-    const isBuy  = dir === 'UP';
-    const entry  = isBuy ? ask : bid;
-    const atr    = this.calcATR(60, 10);
+    const isBuy   = dir === 'UP';
+    const entry   = isBuy ? ask : bid;
+    const slPrice = isBuy ? entry - this.HFT_SL_TICKS : entry + this.HFT_SL_TICKS;
+    const tpPrice = isBuy ? entry + this.HFT_TP_TICKS : entry - this.HFT_TP_TICKS;
+    const slDist  = this.HFT_SL_TICKS;
 
-    // ── SL: exact from HFT scanner or ATR-fallback ──
-    let slPrice;
-    if (evalResult.slOverride != null) {
-      slPrice = evalResult.slOverride;
-    } else if (evalResult.ob) {
-      const buf = 0.12;
-      slPrice   = isBuy ? evalResult.ob.low - buf : evalResult.ob.high + buf;
-    } else {
-      slPrice   = isBuy ? entry - atr * 0.9 : entry + atr * 0.9;
-    }
-
-    const slDist = Math.abs(entry - slPrice);
-    if (slDist < 0.05 || slDist > atr * 4) return; // sanity guard
-
-    // ── Lot size from risk% ──
-    const riskAmt = AppState.accountBalance * ((AppState.config.riskPct || 0.5) / 100);
-    const rawLots = riskAmt / (slDist * 100);          // XAU: $100/lot/$1 move
+    // Fixed micro-lot sizing: risk 0.3% per trade
+    const riskAmt = AppState.accountBalance * ((AppState.config.riskPct || 0.3) / 100);
+    const rawLots = riskAmt / (slDist * 100);
     const lots    = Math.max(0.01, Math.floor(rawLots * 100) / 100);
-
-    // ── TP: tight HFT multiple ──
-    const tpMult  = this.HFT_TP_MULT;
-    const tpPrice = isBuy ? entry + slDist * tpMult : entry - slDist * tpMult;
 
     const pos = {
       id           : this._nextId++,
@@ -2187,9 +1912,8 @@ const PaperTrader = {
       slDist,
       openTime     : Date.now(),
       pnl          : 0,
-      pattern      : evalResult.pattern || 'M1 Signal',
-      score        : evalResult.score   || 0,
-      // HFT: no BE, no trail, no partial — pure hard TP/SL + time exit
+      pattern      : pattern || 'Tick Signal',
+      score        : 0,
       beTriggered  : false,
       trailPhase   : 0,
       partialClosed: false,
@@ -2198,14 +1922,12 @@ const PaperTrader = {
     AppState.openPositions.push(pos);
     this._cooldownUntil = Date.now() + this.HFT_COOLDOWN;
 
-    const riskStr  = `R$${riskAmt.toFixed(2)}`;
-    const slPips   = (slDist * 100).toFixed(0);
+    const slPips = (slDist * 100).toFixed(0);
     SignalLog.add(
       isBuy ? 'buy' : 'sell',
-      `#${pos.id} OPEN ${lots}L @${entry.toFixed(2)} | SL:${slPrice.toFixed(2)}(${slPips}p) TP:${tpPrice.toFixed(2)} | ${pos.pattern} | ${riskStr}`,
+      `#${pos.id} ${isBuy?'BUY':'SELL'} ${lots}L @${entry.toFixed(2)} TP:${tpPrice.toFixed(2)} SL:${slPrice.toFixed(2)} [${pos.pattern}]`,
       entry
     );
-    UI.toast(`${isBuy ? '🟢' : '🔴'} #${pos.id} ${pos.pattern} | ${lots}L @${entry.toFixed(2)} SL:${slPrice.toFixed(2)}`);
 
     PositionUI.refresh();
     DashboardUI.refreshBalance();
@@ -2214,8 +1936,8 @@ const PaperTrader = {
 
   tick(currentMid) {
     if (!AppState.openPositions.length) return;
-    const now      = Date.now();
-    const toClose  = [];
+    const now     = Date.now();
+    const toClose = [];
 
     AppState.openPositions.forEach(pos => {
       const isBuy     = pos.dir === 'UP';
@@ -2224,9 +1946,9 @@ const PaperTrader = {
       // Float P&L
       pos.pnl = (isBuy ? exitPrice - pos.entry : pos.entry - exitPrice) * pos.lots * 100;
 
-      // ── Time-based exit (HFT: max 3 min) ──
-      if (now - pos.openTime > this.HFT_MAX_MS) {
-        toClose.push({ pos, closePrice: exitPrice, reason: 'Time' });
+      // ── TP hit (check first — wins priority) ──
+      if ((isBuy && exitPrice >= pos.tpPrice) || (!isBuy && exitPrice <= pos.tpPrice)) {
+        toClose.push({ pos, closePrice: pos.tpPrice, reason: 'TP' });
         return;
       }
 
@@ -2236,9 +1958,9 @@ const PaperTrader = {
         return;
       }
 
-      // ── TP hit ──
-      if ((isBuy && exitPrice >= pos.tpPrice) || (!isBuy && exitPrice <= pos.tpPrice)) {
-        toClose.push({ pos, closePrice: pos.tpPrice, reason: 'TP' });
+      // ── Time exit — force close at 8 seconds ──
+      if (now - pos.openTime > this.HFT_MAX_MS) {
+        toClose.push({ pos, closePrice: exitPrice, reason: 'Time' });
       }
     });
 
@@ -2246,8 +1968,7 @@ const PaperTrader = {
       toClose.forEach(({ pos, closePrice, reason }) => this._close(pos, closePrice, reason));
       PositionUI.refresh();
     } else if (AppState.openPositions.length) {
-      // Throttled float P&L UI update (every ~2s to avoid layout thrash)
-      if (now - (this._lastFloatUpdate || 0) > 2000) {
+      if (now - (this._lastFloatUpdate || 0) > 500) {
         this._lastFloatUpdate = now;
         PositionUI.refresh();
       }
@@ -2256,6 +1977,7 @@ const PaperTrader = {
 
   _close(pos, closePrice, reason) {
     const isBuy  = pos.dir === 'UP';
+    // Clamp close price: TP wins are credited at TP, SL losses at SL
     const pnl    = (isBuy ? closePrice - pos.entry : pos.entry - closePrice) * pos.lots * 100;
     const rr     = pos.riskAmt > 0 ? pnl / pos.riskAmt : 0;
     const dur    = Math.round((Date.now() - pos.openTime) / 1000);
@@ -2291,15 +2013,13 @@ const PaperTrader = {
     this._persistBalance();
 
     const icon = reason === 'TP' ? '✅' : reason === 'SL' ? '❌' : '⏱';
-    const durStr = dur < 60 ? `${dur}s` : `${Math.floor(dur/60)}m${dur%60}s`;
     SignalLog.add(
       pnl >= 0 ? 'buy' : 'sell',
-      `${icon} #${pos.id} [${reason}] @${closePrice.toFixed(2)} | ${pnl>=0?'+':''}$${pnl.toFixed(2)} (${rr>=0?'+':''}${rr.toFixed(2)}R) | ${durStr}`,
+      `${icon} #${pos.id} [${reason}] @${closePrice.toFixed(2)} | ${pnl>=0?'+':''}$${pnl.toFixed(2)} | ${dur}s`,
       closePrice
     );
-    UI.toast(`${icon} #${pos.id} ${reason} | ${pnl>=0?'+':''}$${pnl.toFixed(2)} | ${durStr}`);
+    UI.toast(`${icon} #${pos.id} ${reason} | ${pnl>=0?'+':''}$${pnl.toFixed(2)} | ${dur}s`);
 
-    // Refresh all panels
     DashboardUI.refreshBalance();
     DashboardUI.refreshStats();
     DashboardUI.refreshSignal();
@@ -2308,7 +2028,6 @@ const PaperTrader = {
 
     const elById = id => document.getElementById(id);
     const setText = (id, v) => { const e = elById(id); if(e) e.textContent = v; };
-    const setClass = (id, c) => { const e = elById(id); if(e) e.className = c; };
 
     setText('d-best', `$${(AppState.bestTrade||0).toFixed(2)}`);
     if (AppState.tradeHistory.length) {
@@ -2381,8 +2100,8 @@ drawChart();
 // Connect to Deriv WebSocket automatically
 DerivFeed.connect();
 
-// Periodic chart redraw (1 s)
-setInterval(drawChart, 1000);
+// Chart redraws on every tick via _handleDerivMsg — interval kept as fallback
+setInterval(()=>{ if(!AppState.wsConnected) drawChart(); }, 2000);
 
 // Periodic stats refresh (3 s)
 setInterval(()=>{
@@ -2404,7 +2123,7 @@ setInterval(()=>{
 
 // Log ready message
 SignalLog.add('info', 'XAU Compounder Pro — Deriv WebSocket data engine ready', null);
-SignalLog.add('info', 'HFT Engine: LQ Sweep · OB Break · Momentum Pulse | M1 only | TP 1.5R | Max 3min | 12s cooldown', null);
+SignalLog.add('info', 'Ultra-HFT Engine: Tick Surge · Momentum · Tick Push | TP 0.08pt | Max 8s | 3s cooldown | 10+ trades/2min', null);
 
 </script>
 </body>
