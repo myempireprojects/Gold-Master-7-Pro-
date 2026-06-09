@@ -577,7 +577,7 @@ tbody td{padding:9px 11px;font-family:var(--f-mono);font-size:11px;vertical-alig
 
   <div class="settings-block">
     <div class="settings-block-hdr">ATR-Adaptive Exit Rules</div>
-    <div class="notice-box" style="margin-bottom:10px"><span class="nb-icon">⚡</span><span>Pro-HFT: TP = 1.5× ATR, SL = 1.0× ATR (R:R 1.5:1). Break-even trailing activates at 1:1 float. 4-factor signals use 0.5% risk, 3-factor signals use 0.3%. Daily 3% DD halt. Cooldown 5s.</span></div>
+    <div class="notice-box" style="margin-bottom:10px"><span class="nb-icon">⚡</span><span>Pro-HFT: TP = 1.5× ATR, SL = 1.0× ATR (R:R 1.5:1). Requires 2/4 factors in Kill Zones, 3/4 outside. Break-even trail at 1:1. 4-factor signals use 0.5% risk, 3-factor 0.3%, 2-factor 0.2%. Daily 3% DD halt. Cooldown 5s.</span></div>
     <div class="g g-2">
       <div class="form-field"><label>Min TP Distance (pt fallback)</label><input class="form-input" id="s-tp" type="number" value="0.18" step="0.01" min="0.03" max="1.00"></div>
       <div class="form-field"><label>Max Duration (sec)</label><input class="form-input" id="s-max-dur" type="number" value="12" step="1" min="2" max="60"></div>
@@ -1270,7 +1270,8 @@ const HFTScanner = {
 
   // ── F1: Order Flow Imbalance ──
   _f1OFI() {
-    const threshold = 1.5;   // tuned for XAUUSD at ~1 tick/sec
+    // Lowered from 1.5 → 0.6 so normal tick flow registers
+    const threshold = 0.6;
     if (this._ofi >  threshold) return 'bull';
     if (this._ofi < -threshold) return 'bear';
     return null;
@@ -1279,51 +1280,55 @@ const HFTScanner = {
   // ── F2: Spread-Normalised Momentum ──
   _f2Momentum() {
     const buf = this._tickBuf;
-    if (buf.length < 12) return null;
-    // Current spread; skip if wider than 2× median
+    if (buf.length < 8) return null;
     const bidBuf = this._bidBuf, askBuf = this._askBuf;
     const n = buf.length;
-    const curSpread = askBuf[n-1] - bidBuf[n-1];
-    const spreads   = [];
-    for (let i = Math.max(0, n-20); i < n; i++) spreads.push(askBuf[i] - bidBuf[i]);
-    spreads.sort((a,b)=>a-b);
-    const medSpread = spreads[Math.floor(spreads.length/2)];
-    if (curSpread > medSpread * 2.2) return null;   // spread too wide — skip
+    const curSpread = Math.max(0.01, askBuf[n-1] - bidBuf[n-1]);
+    // Skip only extremely wide spreads (5× median)
+    const spreads = [];
+    for (let i = Math.max(0, n-20); i < n; i++) {
+      const s = askBuf[i] - bidBuf[i];
+      if (s > 0) spreads.push(s);
+    }
+    if (spreads.length >= 5) {
+      spreads.sort((a,b)=>a-b);
+      const medSpread = spreads[Math.floor(spreads.length/2)];
+      if (curSpread > medSpread * 5) return null;   // only block extreme spikes
+    }
 
-    const win = 10;
+    const win = Math.min(8, Math.floor(buf.length / 2));
     const recent = buf.slice(-win);
     const older  = buf.slice(-win*2, -win);
-    if (older.length < win) return null;
-    const rAvg = recent.reduce((s,v)=>s+v,0)/win;
-    const oAvg = older.reduce((s,v)=>s+v,0)/win;
-    const mom  = (rAvg - oAvg) / Math.max(0.01, curSpread);
-    if (mom >  1.8) return 'bull';
-    if (mom < -1.8) return 'bear';
+    if (older.length < 2) return null;
+    const rAvg = recent.reduce((s,v)=>s+v,0)/recent.length;
+    const oAvg = older.reduce((s,v)=>s+v,0)/older.length;
+    // Lowered threshold from 1.8 → 0.5 (spread-normalised)
+    const mom  = (rAvg - oAvg) / curSpread;
+    if (mom >  0.5) return 'bull';
+    if (mom < -0.5) return 'bear';
     return null;
   },
 
   // ── F3: Micro tick-VWAP deviation ──
   _f3VWAP() {
     const buf = this._tickBuf;
-    if (buf.length < 15) return null;
-    const sl   = buf.slice(-20);
-    // Proxy volume = 1 per tick (no volume data from Deriv ticks)
+    if (buf.length < 10) return null;
+    const sl   = buf.slice(-15);
     const vwap = sl.reduce((s,v)=>s+v,0) / sl.length;
     const cur  = buf[buf.length-1];
     const atr  = strategy.calcATR(10);
-    const dev  = (cur - vwap) / Math.max(0.01, atr);
-    // Deviation > 0.15 ATR: trending above VWAP (bull continuation)
-    // Deviation < -0.15 ATR: trending below VWAP (bear continuation)
-    if (dev >  0.15) return 'bull';
-    if (dev < -0.15) return 'bear';
+    // Lowered from 0.15 → 0.05 ATR deviation to fire more readily
+    const dev  = (cur - vwap) / Math.max(0.1, atr);
+    if (dev >  0.05) return 'bull';
+    if (dev < -0.05) return 'bear';
     return null;
   },
 
   // ── F4: M1 EMA(5) vs EMA(14) cross ──
   _f4EMACross() {
-    const bars = strategy.getCompleted(60, false);
-    if (bars.length < 16) return null;
-    const closes = bars.slice(-30).map(c => c.close);
+    const bars = strategy.getCompleted(60, true);   // include forming bar
+    if (bars.length < 10) return null;
+    const closes = bars.slice(-20).map(c => c.close);
     const ema = (arr, period) => {
       const k = 2 / (period + 1);
       let e = arr[0];
@@ -1331,54 +1336,41 @@ const HFTScanner = {
       return e;
     };
     const fast = ema(closes, 5);
-    const slow = ema(closes, 14);
-    if (fast > slow * 1.00005) return 'bull';   // fast above slow
-    if (fast < slow * 0.99995) return 'bear';   // fast below slow
+    const slow = ema(closes, Math.min(14, closes.length));
+    // Relaxed from 0.00005 → any separation counts
+    if (fast > slow) return 'bull';
+    if (fast < slow) return 'bear';
     return null;
   },
 
   // ── F5: ATR volatility regime ──
   _f5ATRRegime() {
-    const bars = strategy.getCompleted(60, false);
-    if (bars.length < 22) return 'ok';   // not enough data — allow through
+    const bars = strategy.getCompleted(60, true);
+    if (bars.length < 10) return 'ok';   // not enough data — allow through
     const atrs = [];
-    for (let i = bars.length - 21; i < bars.length - 1; i++) {
+    const limit = Math.min(bars.length - 1, 20);
+    for (let i = bars.length - limit; i < bars.length - 1; i++) {
       const c = bars[i+1], p = bars[i];
       atrs.push(Math.max(c.high-c.low, Math.abs(c.high-p.close), Math.abs(c.low-p.close)));
     }
+    if (atrs.length < 3) return 'ok';
     atrs.sort((a,b)=>a-b);
     const medAtr = atrs[Math.floor(atrs.length/2)];
     const curAtr = strategy.calcATR(5);
-    // Too quiet (below 50% of median) or too wild (above 200%)
-    if (curAtr < medAtr * 0.5)  return null;   // range-bound / no momentum
-    if (curAtr > medAtr * 2.2)  return null;   // news spike / slippage risk
+    // Only block extreme spikes (5× median); remove low-vol filter entirely
+    if (curAtr > medAtr * 5) return null;   // news spike only
     return 'ok';
   },
 
-  // ── MAIN SCAN — requires 3/4 directional factors + ATR regime OK ──
+  // ── MAIN SCAN — requires 2/4 directional factors to agree ──
+  // In Kill Zones: 2/4 sufficient. Outside KZ: 3/4 required.
   scan() {
     const buf = this._tickBuf;
-    if (buf.length < 15) return null;
+    if (buf.length < 10) return null;
 
-    // ATR regime must pass first (hard filter)
+    // ATR regime hard filter (only blocks extreme news spikes)
     if (!this._f5ATRRegime()) return null;
 
-    // Session filter — only fire in kill zones for best edge
-    if (!strategy.inKillZone()) {
-      // Outside kill zones: require higher confidence (4/4 agreement)
-      const f1 = this._f1OFI();
-      const f2 = this._f2Momentum();
-      const f3 = this._f3VWAP();
-      const f4 = this._f4EMACross();
-      const votes = [f1, f2, f3, f4];
-      const bulls = votes.filter(v=>v==='bull').length;
-      const bears = votes.filter(v=>v==='bear').length;
-      if (bulls < 4 && bears < 4) return null;   // need full agreement outside KZ
-      const dir = bulls >= 4 ? 'UP' : 'DOWN';
-      return { dir, pattern: 'Full-Stack ↑↓', score: 10, quality: 3, inKZ: false };
-    }
-
-    // Inside kill zones: 3/4 directional agreement
     const f1 = this._f1OFI();
     const f2 = this._f2Momentum();
     const f3 = this._f3VWAP();
@@ -1387,28 +1379,32 @@ const HFTScanner = {
     const bulls = votes.filter(v=>v==='bull').length;
     const bears = votes.filter(v=>v==='bear').length;
 
-    if (bulls < 3 && bears < 3) return null;
+    const inKZ = strategy.inKillZone();
+    const minConf = inKZ ? 2 : 3;   // 2/4 in KZ, 3/4 outside
 
-    const dir  = bulls >= bears ? 'UP' : 'DOWN';
-    const conf = Math.max(bulls, bears);   // 3 or 4 factors agreeing
+    if (bulls < minConf && bears < minConf) return null;
+    // Require clear majority — don't fire if tied
+    if (bulls === bears) return null;
 
-    // Minimum net displacement to prevent re-entering on flat price
+    const dir  = bulls > bears ? 'UP' : 'DOWN';
+    const conf = Math.max(bulls, bears);
+
+    // Minimum displacement check (relaxed to 0.05)
     const recent5 = buf.slice(-5);
     const disp    = Math.abs(recent5[recent5.length-1] - recent5[0]);
-    if (disp < this.MIN_DISP) return null;
+    if (disp < Math.max(0.05, this.MIN_DISP * 0.1)) return null;
 
     const quality = conf >= 4 ? 3 : conf === 3 ? 2 : 1;
-    const score   = conf * 2 + Math.min(2, Math.round(disp));
+    const score   = conf * 2 + Math.min(2, Math.round(disp * 2));
 
-    // Pattern label from dominant factors
-    const kz = strategy.activeKillZone() || 'KZ';
+    const sessionTag = strategy.activeKillZone() || strategy.activeSession();
     let pattern;
-    if (conf >= 4) pattern = dir === 'UP' ? `OFI+EMA Surge ↑ [${kz}]` : `OFI+EMA Surge ↓ [${kz}]`;
-    else if (f1 && f4 && f1===f4) pattern = dir==='UP' ? `Flow+Trend ↑ [${kz}]` : `Flow+Trend ↓ [${kz}]`;
-    else if (f2 && f3 && f2===f3) pattern = dir==='UP' ? `Mom+VWAP ↑ [${kz}]`   : `Mom+VWAP ↓ [${kz}]`;
-    else pattern = dir==='UP' ? `Multi-Factor ↑ [${kz}]` : `Multi-Factor ↓ [${kz}]`;
+    if (conf >= 4) pattern = dir === 'UP' ? `Full-Stack ↑ [${sessionTag}]`   : `Full-Stack ↓ [${sessionTag}]`;
+    else if (f1 && f4 && f1===f4) pattern = dir==='UP' ? `Flow+Trend ↑ [${sessionTag}]` : `Flow+Trend ↓ [${sessionTag}]`;
+    else if (f2 && f3 && f2===f3) pattern = dir==='UP' ? `Mom+VWAP ↑ [${sessionTag}]`   : `Mom+VWAP ↓ [${sessionTag}]`;
+    else pattern = dir==='UP' ? `Multi-Factor ↑ [${sessionTag}]` : `Multi-Factor ↓ [${sessionTag}]`;
 
-    return { dir, pattern, score, quality, disp, conf, inKZ: true,
+    return { dir, pattern, score, quality, disp, conf, inKZ,
              factors: { ofi: f1, mom: f2, vwap: f3, ema: f4 } };
   },
 
@@ -2095,7 +2091,7 @@ const PaperTrader = {
     const spreads = buf.map((a,i)=>a - (bBuf[i]||a)).filter(s=>s>0).sort((a,b)=>a-b);
     if (!spreads.length) return true;
     const med = spreads[Math.floor(spreads.length/2)];
-    return cur <= med * 1.5;
+    return cur <= med * 4;   // only block extreme spike spreads
   },
 
   tryOpen(dir, pattern, hftSignal) {
@@ -2148,8 +2144,8 @@ const PaperTrader = {
     const tpPrice = isBuy ? entry + tpDist : entry - tpDist;
 
     // ── Quality-tiered risk sizing ──
-    const conf    = hftSignal ? (hftSignal.conf || 3) : 3;
-    const riskPct = conf >= 4 ? 0.5 : 0.3;   // 0.5% for 4-factor, 0.3% for 3-factor
+    const conf    = hftSignal ? (hftSignal.conf || 2) : 2;
+    const riskPct = conf >= 4 ? 0.5 : conf === 3 ? 0.3 : 0.2;   // 0.5/0.3/0.2% by confidence
     const riskAmt = AppState.accountBalance * (riskPct / 100);
     const rawLots = riskAmt / (slDist * 100);
     const lots    = Math.max(0.01, Math.floor(rawLots * 100) / 100);
@@ -2407,7 +2403,7 @@ setInterval(()=>{
 
 // Log ready message
 SignalLog.add('info', 'XAU Compounder Pro — Deriv WebSocket data engine ready', null);
-SignalLog.add('info', 'Pro-HFT Engine v3: 5-Factor Signal (OFI + SpreadMom + TickVWAP + EMA + ATR Regime) | ATR-adaptive TP 1.5× SL 1.0× | Break-even trail at 1:1 | KZ gate (London/NY/Asian opens) | Daily 3% DD halt | 2 max positions | 5s cooldown', null);
+SignalLog.add('info', 'Pro-HFT Engine v3: 5-Factor (OFI+Mom+VWAP+EMA+ATR) | 2/4 in KZ, 3/4 outside | ATR-adaptive TP 1.5× SL 1.0× | BE trail at 1:1 | Daily 3% DD halt | Cooldown 5s', null);
 
 </script>
 </body>
