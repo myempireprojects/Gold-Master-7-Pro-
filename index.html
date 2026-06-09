@@ -1215,7 +1215,7 @@ const HFTScanner = {
   // Returns { dir:'UP'|'DOWN', pattern:string, score:int, quality:int } or null
   scan() {
     const buf = this._tickBuf;
-    if (buf.length < 6) return null;
+    if (buf.length < 8) return null;   // need more ticks for confidence
 
     const n    = buf.length;
     const last = buf[n - 1];
@@ -1224,7 +1224,7 @@ const HFTScanner = {
     // ── Tick delta (instant momentum) ──
     const delta  = last - prev;
     const absDlt = Math.abs(delta);
-    if (absDlt < 0.01) return null;   // flat tick — no signal
+    if (absDlt < 0.02) return null;   // ignore micro-noise (raised from 0.01)
 
     // ── Short-term slope: last 5 ticks vs ticks 5-10 ago ──
     const win = Math.min(5, Math.floor(n / 2));
@@ -1235,6 +1235,9 @@ const HFTScanner = {
     const recentAvg = recentSlice.reduce((s,v)=>s+v,0) / recentSlice.length;
     const olderAvg  = olderSlice.reduce((s,v)=>s+v,0)  / olderSlice.length;
     const slope     = recentAvg - olderAvg;
+
+    // ── Slope must be meaningful — not just noise ──
+    if (Math.abs(slope) < 0.015) return null;
 
     // ── Consecutive tick direction streak ──
     let streak = 1;
@@ -1248,21 +1251,30 @@ const HFTScanner = {
     const tickRange = Math.max(...window10) - Math.min(...window10);
     const tickAtr   = tickRange / (window10.length - 1 || 1);
 
-    // Require at least 2 consecutive ticks in same direction AND slope alignment
-    if (streak < 2) return null;
+    // Require at least 3 consecutive ticks (raised from 2) AND slope alignment
+    if (streak < 3) return null;
 
     const isBull = delta > 0 && slope > 0;
     const isBear = delta < 0 && slope < 0;
     if (!isBull && !isBear) return null;
 
+    // ── Additional confirmation: the full-buffer trend must agree ──
+    // Compare first-half avg vs second-half avg of entire buffer
+    const half   = Math.floor(n / 2);
+    const firstH = buf.slice(0, half).reduce((s,v)=>s+v,0) / half;
+    const seconH = buf.slice(half).reduce((s,v)=>s+v,0)    / (n - half);
+    const bufTrend = seconH - firstH;
+    if (isBull && bufTrend < 0) return null;  // buffer disagrees — skip
+    if (isBear && bufTrend > 0) return null;  // buffer disagrees — skip
+
     const dir   = isBull ? 'UP' : 'DOWN';
     const score = Math.min(10, streak * 2 + Math.round(absDlt * 10));
-    const qual  = streak >= 4 ? 3 : streak >= 3 ? 2 : 1;
+    const qual  = streak >= 5 ? 3 : streak >= 4 ? 2 : 1;
 
     // ── Pattern label (pure tick-based) ──
     let pattern;
-    if (streak >= 4)    pattern = isBull ? 'Tick Surge ↑'   : 'Tick Surge ↓';
-    else if (streak === 3) pattern = isBull ? 'Momentum ↑'  : 'Momentum ↓';
+    if (streak >= 5)    pattern = isBull ? 'Tick Surge ↑'   : 'Tick Surge ↓';
+    else if (streak === 4) pattern = isBull ? 'Momentum ↑'  : 'Momentum ↓';
     else                pattern = isBull ? 'Tick Push ↑'    : 'Tick Push ↓';
 
     return { dir, pattern, score, quality: qual, tickRange, streak };
@@ -1516,13 +1528,27 @@ const GateUI = {
 // ══════════════════════════════════════════════════════
 const DashboardUI = {
   refreshBalance() {
-    const bal=AppState.accountBalance;
-    $('d-balance').textContent=`$${bal.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}`;
-    $('equity-chip').textContent=`$${bal.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}`;
-    const dd=AppState.maxDrawdown||0;
-    $('d-drawdown').textContent=dd.toFixed(2)+'%';
-    const bar=$('d-dd-bar');
-    if(bar){ bar.style.width=Math.min(dd,20)/20*100+'%'; bar.className='risk-fill '+(dd>=10?'danger':dd>=5?'caution':'safe'); }
+    const bal = AppState.accountBalance;
+    const fmt = '$' + bal.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+    const balEl = $('d-balance');
+    if (balEl) {
+      balEl.textContent = fmt;
+      balEl.className = 'metric lg ' + (bal <= 0 ? 'dn' : 'au');
+    }
+    const chip = $('equity-chip');
+    if (chip) {
+      if (bal <= 0) {
+        chip.textContent = '⛔ $0.00 WIPED';
+        chip.style.cssText = 'background:rgba(255,61,87,.2);border-color:var(--bear);color:var(--bear)';
+      } else {
+        chip.textContent = fmt;
+        chip.style.cssText = '';
+      }
+    }
+    const dd = AppState.maxDrawdown || 0;
+    const ddEl = $('d-drawdown'); if (ddEl) ddEl.textContent = dd.toFixed(2) + '%';
+    const bar = $('d-dd-bar');
+    if (bar) { bar.style.width = Math.min(dd,20)/20*100+'%'; bar.className = 'risk-fill '+(dd>=10?'danger':dd>=5?'caution':'safe'); }
   },
   refreshSignal() {
     const sig=AppState.currentSignal, score=AppState.signalScore;
@@ -1886,9 +1912,33 @@ const PaperTrader = {
 
   tryOpen(dir, pattern) {
     if (!this.enabled) return;
+
+    // ── ZERO BALANCE GUARD — halt all trading if account is wiped ──
+    if (AppState.accountBalance <= 0) {
+      if (this.enabled) {
+        this.enabled = false;
+        const btn = $('bot-toggle-btn');
+        if (btn) {
+          btn.innerHTML = '<span class="bot-dot"></span> START BOT';
+          btn.className = 'bot-btn bot-inactive';
+        }
+        UI.toast('🚫 ACCOUNT WIPED — Bot halted. Reset balance to resume.');
+        SignalLog.add('info', '⛔ ZERO BALANCE — Trading halted automatically. Reset balance in Settings to resume.', null);
+      }
+      return;
+    }
+
     if (AppState.openPositions.length >= this.HFT_MAX_OPEN) return;
     if (Date.now() < this._cooldownUntil) return;
     if (!bid || !ask || mid === 0) return;
+
+    // ── DIRECTION CONFIRMATION — require micro-trend alignment ──
+    const microDir = strategy.microTrend(4);
+    const signalUp   = dir === 'UP';
+    const signalDown = dir === 'DOWN';
+    // Reject if micro-trend opposes the signal (neutral is allowed through)
+    if (signalUp   && microDir === 'bear') return;
+    if (signalDown && microDir === 'bull') return;
 
     const isBuy   = dir === 'UP';
     const entry   = isBuy ? ask : bid;
@@ -1936,6 +1986,14 @@ const PaperTrader = {
 
   tick(currentMid) {
     if (!AppState.openPositions.length) return;
+    // If balance somehow reaches zero mid-session, halt immediately
+    if (AppState.accountBalance <= 0 && this.enabled) {
+      this.enabled = false;
+      const btn = $('bot-toggle-btn');
+      if (btn) { btn.innerHTML = '<span class="bot-dot"></span> START BOT'; btn.className = 'bot-btn bot-inactive'; }
+      UI.toast('🚫 ACCOUNT WIPED — Bot halted.');
+      SignalLog.add('info', '⛔ ZERO BALANCE reached — Trading halted.', null);
+    }
     const now     = Date.now();
     const toClose = [];
 
@@ -1958,8 +2016,10 @@ const PaperTrader = {
         return;
       }
 
-      // ── Time exit — force close at 8 seconds ──
+      // ── Time exit — force close at current market price, only if not near TP ──
       if (now - pos.openTime > this.HFT_MAX_MS) {
+        // If floating P&L is positive, close at market (lock profit)
+        // If negative, also close (cut loss — don't hold further)
         toClose.push({ pos, closePrice: exitPrice, reason: 'Time' });
       }
     });
@@ -1984,6 +2044,8 @@ const PaperTrader = {
 
     AppState.openPositions  = AppState.openPositions.filter(p => p.id !== pos.id);
     AppState.accountBalance += pnl;
+    // Floor balance at zero — never go negative
+    if (AppState.accountBalance < 0) AppState.accountBalance = 0;
     AppState.dailyPnl        = (AppState.dailyPnl || 0) + pnl;
     AppState.equitySeries.push(AppState.accountBalance);
     if (AppState.equitySeries.length > 500) AppState.equitySeries.shift();
@@ -2108,9 +2170,6 @@ setInterval(()=>{
   DashboardUI.refreshBalance();
   DashboardUI.refreshStats();
   PositionUI.refresh();
-  // Keep equity chip in sync
-  const chipEl = $('equity-chip');
-  if (chipEl) chipEl.textContent = '$' + AppState.accountBalance.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2});
   // Update daily P&L display
   const pnlEl = $('d-daily-pnl');
   if (pnlEl && AppState.openPositions.length) {
@@ -2123,7 +2182,7 @@ setInterval(()=>{
 
 // Log ready message
 SignalLog.add('info', 'XAU Compounder Pro — Deriv WebSocket data engine ready', null);
-SignalLog.add('info', 'Ultra-HFT Engine: Tick Surge · Momentum · Tick Push | TP 0.08pt | Max 8s | 3s cooldown | 10+ trades/2min', null);
+SignalLog.add('info', 'Ultra-HFT Engine: Streak≥3 + Slope + MicroTrend aligned | TP 0.08pt | SL 0.25pt | Max 8s | 3s cooldown | Auto-halt at $0.00', null);
 
 </script>
 </body>
