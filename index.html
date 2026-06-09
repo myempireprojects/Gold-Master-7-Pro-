@@ -2008,7 +2008,7 @@ const PaperTrader = {
   HFT_MAX_MS       : 12000, // 12s max hold (up from 8s for ATR-based targets)
   HFT_COOLDOWN     : 5000,  // 5s cooldown — fewer, higher-quality entries
   HFT_MAX_OPEN     : 2,     // max 2 simultaneous (quality > quantity)
-  HFT_DAILY_DD_PCT : 3.0,   // halt if daily drawdown exceeds 3%
+  HFT_DAILY_DD_PCT : 20.0,  // halt if daily drawdown exceeds 20%
 
   _dailyStartBal   : null,  // set on first trade of day
 
@@ -2023,7 +2023,7 @@ const PaperTrader = {
     }
     if (this.enabled) {
       this._dailyStartBal = this._dailyStartBal || AppState.accountBalance;
-      UI.toast('⚡ Pro-HFT ACTIVE — OFI+EMA+VWAP | ATR-adaptive R:R 1.5:1 | KZ filter ON');
+      UI.toast('⚡ Pro-HFT ACTIVE — OFI+EMA+Slope | ATR-adaptive R:R 1.5:1 | DD halt: 20%');
       SignalLog.add('info',
         `Pro-HFT started | Bal:$${AppState.accountBalance.toFixed(2)} | ATR TP:${this.HFT_TP_ATR_MULT}× SL:${this.HFT_SL_ATR_MULT}× | DD halt:${this.HFT_DAILY_DD_PCT}%`,
         null);
@@ -2149,45 +2149,48 @@ const PaperTrader = {
     const toClose = [];
 
     AppState.openPositions.forEach(pos => {
-      const isBuy     = pos.dir === 'UP';
-      const exitPrice = isBuy ? bid : ask;
+      const isBuy = pos.dir === 'UP';
 
-      // Float P&L
-      pos.pnl = (isBuy ? exitPrice - pos.entry : pos.entry - exitPrice) * pos.lots * 100;
+      // Use mid for SL/TP evaluation — avoids false triggers from spread
+      // (bid alone can dip below SL on a BUY even when price hasn't truly reached it)
+      const checkPrice = mid;
+      const exitPrice  = isBuy ? bid : ask;   // actual fill price if we do close
+
+      // Float P&L uses real fill side
+      pos.pnl = (isBuy ? bid - pos.entry : pos.entry - ask) * pos.lots * 100;
 
       // ── Break-even trailing — move SL to entry once at 1:1 ──
       if (!pos.beTriggered && pos.pnl >= pos.riskAmt * 1.0) {
         const beBuffer = Math.max(0.01, (ask - bid) * 0.5);
         const newSL    = isBuy ? pos.entry + beBuffer : pos.entry - beBuffer;
-        // Only tighten SL — never widen it
         if (isBuy  && newSL > pos.slPrice) { pos.slPrice = newSL; pos.beTriggered = true; pos.trailPhase = 1; }
         if (!isBuy && newSL < pos.slPrice) { pos.slPrice = newSL; pos.beTriggered = true; pos.trailPhase = 1; }
         if (pos.beTriggered) {
-          SignalLog.add('info', `#${pos.id} BE locked @${newSL.toFixed(2)} (float +$${pos.pnl.toFixed(2)})`, exitPrice);
+          SignalLog.add('info', `#${pos.id} BE locked @${newSL.toFixed(2)} (float +$${pos.pnl.toFixed(2)})`, checkPrice);
         }
       }
 
-      // ── Phase-2 trailing at 1:1.2 — tighten SL further ──
+      // ── Phase-2 trailing at 1.5× risk ──
       if (pos.beTriggered && pos.trailPhase === 1 && pos.pnl >= pos.riskAmt * 1.5) {
         const trailDist = pos.slDist * 0.4;
-        const newSL     = isBuy ? exitPrice - trailDist : exitPrice + trailDist;
+        const newSL     = isBuy ? checkPrice - trailDist : checkPrice + trailDist;
         if (isBuy  && newSL > pos.slPrice) { pos.slPrice = newSL; pos.trailPhase = 2; }
         if (!isBuy && newSL < pos.slPrice) { pos.slPrice = newSL; pos.trailPhase = 2; }
       }
 
-      // ── TP hit ──
-      if ((isBuy && exitPrice >= pos.tpPrice) || (!isBuy && exitPrice <= pos.tpPrice)) {
+      // ── TP hit — check against mid ──
+      if ((isBuy && checkPrice >= pos.tpPrice) || (!isBuy && checkPrice <= pos.tpPrice)) {
         toClose.push({ pos, closePrice: pos.tpPrice, reason: 'TP' });
         return;
       }
 
-      // ── SL hit (includes trailing BE SL) ──
-      if ((isBuy && exitPrice <= pos.slPrice) || (!isBuy && exitPrice >= pos.slPrice)) {
-        toClose.push({ pos, closePrice: pos.slPrice, reason: 'SL' });
+      // ── SL hit — check against mid to avoid spread-induced false triggers ──
+      if ((isBuy && checkPrice <= pos.slPrice) || (!isBuy && checkPrice >= pos.slPrice)) {
+        toClose.push({ pos, closePrice: exitPrice, reason: 'SL' });
         return;
       }
 
-      // ── Time exit — only if floating negative or beyond 12s ──
+      // ── Time exit ──
       if (now - pos.openTime > this.HFT_MAX_MS) {
         toClose.push({ pos, closePrice: exitPrice, reason: 'Time' });
       }
