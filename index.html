@@ -2082,14 +2082,18 @@ const PaperTrader = {
     if (Date.now() < this._cooldownUntil) return;
     if (!bid || !ask || mid === 0) return;
 
-    // ── ATR-adaptive TP/SL ──
-    const atr     = strategy.calcATR(10);
-    const tpDist  = Math.max(this.HFT_TP_TICKS, atr * this.HFT_TP_ATR_MULT);
-    const slDist  = Math.max(this.HFT_SL_TICKS, atr * this.HFT_SL_ATR_MULT);
-    const isBuy   = dir === 'UP';
-    const entry   = isBuy ? ask : bid;
-    const slPrice = isBuy ? entry - slDist : entry + slDist;
-    const tpPrice = isBuy ? entry + tpDist : entry - tpDist;
+    // ── ATR-adaptive TP/SL — anchor everything to mid so checks are consistent ──
+    const atr      = strategy.calcATR(10);
+    const spread   = Math.max(0.01, ask - bid);
+    const tpDist   = Math.max(this.HFT_TP_TICKS, atr * this.HFT_TP_ATR_MULT);
+    const slDist   = Math.max(this.HFT_SL_TICKS, atr * this.HFT_SL_ATR_MULT);
+    const isBuy    = dir === 'UP';
+    // Entry reference = mid; actual fill will be ask/bid but SL/TP levels
+    // are measured from mid so the spread never causes an instant stop-out
+    const entryMid = mid;
+    const entry    = isBuy ? ask : bid;   // real fill price (for P&L)
+    const slPrice  = isBuy ? entryMid - slDist : entryMid + slDist;
+    const tpPrice  = isBuy ? entryMid + tpDist : entryMid - tpDist;
 
     // ── Quality-tiered risk sizing ──
     const conf    = hftSignal ? (hftSignal.conf || 2) : 2;
@@ -2103,7 +2107,8 @@ const PaperTrader = {
     const pos = {
       id            : this._nextId++,
       dir,
-      entry,
+      entry,        // real fill (ask for buy, bid for sell) — used for P&L
+      entryMid,     // mid at open — SL/TP levels are relative to this
       slPrice,
       tpPrice,
       lots,
@@ -2159,10 +2164,11 @@ const PaperTrader = {
       // Float P&L uses real fill side
       pos.pnl = (isBuy ? bid - pos.entry : pos.entry - ask) * pos.lots * 100;
 
-      // ── Break-even trailing — move SL to entry once at 1:1 ──
+      // ── Break-even trailing — move SL to entryMid once at 1:1 ──
       if (!pos.beTriggered && pos.pnl >= pos.riskAmt * 1.0) {
         const beBuffer = Math.max(0.01, (ask - bid) * 0.5);
-        const newSL    = isBuy ? pos.entry + beBuffer : pos.entry - beBuffer;
+        const anchorMid = pos.entryMid || pos.entry;
+        const newSL    = isBuy ? anchorMid + beBuffer : anchorMid - beBuffer;
         if (isBuy  && newSL > pos.slPrice) { pos.slPrice = newSL; pos.beTriggered = true; pos.trailPhase = 1; }
         if (!isBuy && newSL < pos.slPrice) { pos.slPrice = newSL; pos.beTriggered = true; pos.trailPhase = 1; }
         if (pos.beTriggered) {
